@@ -1,9 +1,11 @@
+import React from "react";
 import { useAppTheme } from "@hooks";
 import { ThemeColors } from "@theme";
-import React from "react";
 import { Pressable } from "react-native";
 import { ArrowLeft } from "../../assets/icons/ArrowLeft";
 import { DirectBox } from "../../assets/icons/DirectBox";
+import { EyeOn } from "../../assets/icons/EyeOn";
+import { EyeOff } from "../../assets/icons/EyeOff";
 
 export interface IconBase {
     size?: number;
@@ -37,7 +39,9 @@ export function Icon({
 
 const iconRegistry = {
     directBox: DirectBox,
-    arrowLeft: ArrowLeft
+    arrowLeft: ArrowLeft,
+    eyeOn: EyeOn,
+    eyeOff: EyeOff,
 };
 
 type IconType = typeof iconRegistry;

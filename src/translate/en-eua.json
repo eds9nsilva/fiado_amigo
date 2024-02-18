@@ -1,0 +1,12 @@
+{
+    "translation": {
+        "logIn": "Log in",
+        "logInDescription": "Make the most of your app",
+        "typeYourEmail": "Type your e-maill",
+        "typeYourPassword": "Type your password",
+        "password": "Password",
+        "forgotMyPassword": "I forgot my password",
+        "toEnter": "Log In",
+        "createAnAccount": "Create an account"
+    }
+}
