@@ -9,7 +9,7 @@ export const palette = {
     yelloWarning: '#FD8311',
 
     grayBlack: '#000000',
-    gray1: '#636363',
+    gray1: '#A9B0C5',
     gray2: '#8E8E8E',
     gray3: '#B3B3B3',
     gray4: '#E1E1E1',
@@ -27,6 +27,8 @@ export const theme = createTheme({
 
         background: palette.grayWhite,
         backgroundContrast: palette.grayBlack,
+
+        secundaryBackground: palette.greenPrimaryLight,
 
         error: palette.redError,
         success: palette.greenSuccess,

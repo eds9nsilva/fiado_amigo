@@ -1,0 +1,12 @@
+{
+    "translation": {
+        "logIn": "Faça login",
+        "logInDescription": "Aproveite o máximo do seu aplicativo",
+        "typeYourEmail": "Digite seu e-mail",
+        "typeYourPassword": "Digite sua senha",
+        "password": "Senha",
+        "forgotMyPassword": "Esqueci minha senha",
+        "toEnter": "Entrar",
+        "createAnAccount": "Criar uma conta"
+    }
+}
