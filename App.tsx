@@ -5,6 +5,10 @@ import { ThemeProvider } from "@shopify/restyle";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import './src/translate/index';
+import { inicializeStorage } from "./src/services/storage/storageService";
+import { mmkvStorage } from "./src/services/storage/mmkvStorage";
+
+inicializeStorage(mmkvStorage)
 
 function App(): JSX.Element {
   return (
