@@ -6,7 +6,15 @@
         "typeYourPassword": "Type your password",
         "password": "Password",
         "forgotMyPassword": "I forgot my password",
+        "forgotMyPasswordDescription": "Enter your email and we will send you password reset instructions",
         "toEnter": "Log In",
-        "createAnAccount": "Create an account"
+        "createAnAccount": "Create an account",
+        "yourName": "Your Name",
+        "typeYourName": "Type your name",
+        "confirmPassword": "Confirm Password",
+        "createMyAccount": "Create my account",
+        "toGoBack": "To go back",
+        "recoverPassword": "Recover password"
+
     }
 }

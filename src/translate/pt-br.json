@@ -6,7 +6,14 @@
         "typeYourPassword": "Digite sua senha",
         "password": "Senha",
         "forgotMyPassword": "Esqueci minha senha",
+        "forgotMyPasswordDescription": "Digite seu e-mail e enviaremos as instruções para redefinição de senha",
         "toEnter": "Entrar",
-        "createAnAccount": "Criar uma conta"
+        "createAnAccount": "Criar uma conta",
+        "yourName": "Seu Nome",
+        "typeYourName": "Digite seu nome",
+        "confirmPassword": "Confirmar senha",
+        "createMyAccount": "Criar minha conta",
+        "toGoBack": "Voltar",
+        "recoverPassword": "Recuperar senha"
     }
 }

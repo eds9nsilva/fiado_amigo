@@ -6,9 +6,11 @@ import { Text, Screen, FormTextInput, FormPasswordInput, Box, Button } from "@co
 
 import { SimpleLogo } from "@brand";
 import { LoginSchema, loginSchema } from "./LoginSchema";
+import { AuthScreenProps } from "@routes";
 
-export function LoginScreen() {
+export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
     const { t } = useTranslation();
+
     const { control, formState, handleSubmit } = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -17,6 +19,15 @@ export function LoginScreen() {
         },
         mode: 'onChange',
     });
+
+    function navigateToSignUpScreen() {
+        navigation.navigate('SignUpScreen');
+    }
+
+    function navigateToForgotPasswordScreen() {
+        navigation.navigate('ForgotPasswordScreen');
+    }
+
     return (
         <Screen scrollable>
             <Box alignItems="center" mt="s40" mb="s48">
@@ -39,7 +50,7 @@ export function LoginScreen() {
                 boxProps={{ mb: 's20' }}
             />
             <Text
-                onPress={() => { }}
+                onPress={navigateToForgotPasswordScreen}
                 color="primary"
                 preset="paragraphSmall"
                 bold>
@@ -53,10 +64,10 @@ export function LoginScreen() {
             />
 
             <Button
+                onPress={navigateToSignUpScreen}
                 preset="secondary"
                 marginTop="s12"
                 title={t('createAnAccount')}
-                onPress={() => { }}
             />
         </Screen>
     )

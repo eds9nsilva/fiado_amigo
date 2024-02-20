@@ -1,12 +1,16 @@
-import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
 
-import { AuthStack } from './AuthStack';
+import {NavigationContainer} from '@react-navigation/native';
+
+import {AppStack} from './AppStack';
+import {AuthStack} from './AuthStack';
+
+const authenticated = false;
 
 export function Router() {
-    return (
-        <NavigationContainer>
-            <AuthStack />
-        </NavigationContainer>
-    );
+  return (
+    <NavigationContainer>
+      {authenticated ? <AppStack /> : <AuthStack />}
+    </NavigationContainer>
+  );
 }
