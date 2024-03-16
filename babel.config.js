@@ -13,6 +13,8 @@ module.exports = {
           '@theme': './src/theme',
           '@translate': './src/translate',
           '@brand': './src/brand',
+          '@services': './src/services',
+          '@domain': './src/domain',
         },
       },
     ],
