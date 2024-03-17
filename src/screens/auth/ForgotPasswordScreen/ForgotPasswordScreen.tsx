@@ -10,6 +10,7 @@ import {
   ForgotPasswordSchema,
   forgotPasswordSchema,
 } from './forgotPasswordSchema';
+import { t } from 'i18next';
 
 export function ForgotPasswordScreen() {
   const { reset } = useResetNavigationSuccess();
@@ -36,24 +37,24 @@ export function ForgotPasswordScreen() {
   return (
     <Screen canGoBack>
       <Text preset="headingLarge" mb="s16">
-        {('forgotMyPassword')}
+        {t('forgotMyPassword')}
       </Text>
       <Text preset="paragraphLarge" mb="s32">
-        {('forgotMyPasswordDescription')}
+        {t('forgotMyPasswordDescription')}
       </Text>
 
       <FormTextInput
         control={control}
         name="email"
         label="E-mail"
-        placeholder={('typeYourEmail')}
+        placeholder={t('typeYourEmail')}
         boxProps={{ mb: 's40' }}
       />
 
       <Button
         disabled={!formState.isValid}
         onPress={handleSubmit(submitForm)}
-        title={('recoverPassword')}
+        title={t('recoverPassword')}
       />
     </Screen>
   );

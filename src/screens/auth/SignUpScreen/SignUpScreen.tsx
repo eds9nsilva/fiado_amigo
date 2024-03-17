@@ -2,6 +2,7 @@ import React from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { t } from 'i18next';
 
 import {
   Box,
@@ -49,43 +50,43 @@ export function SignUpScreen() {
     <Screen scrollable canGoBack>
       <Box alignItems='center'>
         <Text preset="headingLarge">
-          {('createAnAccount')}
+          {t('createAnAccount')}
         </Text>
-        <Text preset="paragraphSmall" mb="s24">{('logInDescription')}</Text>
+        <Text preset="paragraphSmall" mb="s24">{t('logInDescription')}</Text>
       </Box>
       <FormTextInput
         control={control}
         name="name"
         autoCapitalize="words"
-        label={('yourName')}
-        placeholder={('typeYourName')}
+        label={t('yourName')}
+        placeholder={t('typeYourName')}
         boxProps={{ mb: 's20' }}
       />
       <FormTextInput
         control={control}
         name="email"
         label="E-mail"
-        placeholder={('typeYourEmail')}
+        placeholder={t('typeYourEmail')}
         boxProps={{ mb: 's20' }}
       />
       <FormPasswordInput
         control={control}
         name="password"
-        label={('password')}
-        placeholder={('typeYourPassword')}
+        label={t('password')}
+        placeholder={t('typeYourPassword')}
         boxProps={{ mb: 's20' }}
       />
       <FormPasswordInput
         control={control}
         name="confirmPassword"
-        label={('confirmPassword')}
-        placeholder={('typeYourPassword')}
+        label={t('confirmPassword')}
+        placeholder={t('typeYourPassword')}
         boxProps={{ mb: 's24' }}
       />
       <Button
         onPress={handleSubmit(submitForm)}
         disabled={!formState.isValid}
-        title={('createMyAccount')}
+        title={t('createMyAccount')}
       />
     </Screen>
   );

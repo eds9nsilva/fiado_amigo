@@ -6,6 +6,7 @@ import { Text, Screen, FormTextInput, FormPasswordInput, Box, Button } from "@co
 import { SimpleLogo } from "@brand";
 import { LoginSchema, loginSchema } from "./LoginSchema";
 import { AuthScreenProps } from "@routes";
+import { t } from 'i18next';
 
 export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
 
@@ -30,21 +31,21 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
         <Screen scrollable>
             <Box alignItems="center" mt="s40" mb="s48">
                 <SimpleLogo width={300} />
-                <Text preset="headingMedium" semiBold mb="s8" mt="s32">{('logIn')}</Text>
-                <Text preset="paragraphSmall">{('logInDescription')}</Text>
+                <Text preset="headingMedium" semiBold mb="s8" mt="s32">{t('logIn')}</Text>
+                <Text preset="paragraphSmall">{t('logInDescription')}</Text>
             </Box>
             <FormTextInput
                 control={control}
                 name="email"
                 label="E-mail"
-                placeholder={('typeYourEmail')}
+                placeholder={t('typeYourEmail')}
                 boxProps={{ mb: 's20' }}
             />
             <FormPasswordInput
                 control={control}
                 name="password"
-                label={('password')}
-                placeholder={('typeYourPassword')}
+                label={t('password')}
+                placeholder={t('typeYourPassword')}
                 boxProps={{ mb: 's20' }}
             />
             <Text
@@ -52,20 +53,20 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
                 color="primary"
                 preset="paragraphSmall"
                 bold>
-                {('forgotMyPassword')}
+                {t('forgotMyPassword')}
             </Text>
             <Button
                 onPress={() => { }}
                 disabled={!formState.isValid}
                 marginTop="s40"
-                title={('toEnter')}
+                title={t('toEnter')}
             />
 
             <Button
                 onPress={navigateToSignUpScreen}
                 preset="secondary"
                 marginTop="s12"
-                title={('createAnAccount')}
+                title={t('createAnAccount')}
             />
         </Screen>
     )
