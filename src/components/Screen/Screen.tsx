@@ -7,7 +7,6 @@ import {Box, BoxProps, TouchableOpacityBox, Icon, Text} from '@components';
 import {useAppSafeArea, useAppTheme} from '@hooks';
 
 import {ScrollViewContainer, ViewContainer} from './Components/ScreenContainer';
-import { useTranslation } from 'react-i18next';
 
 interface ScreenProps extends BoxProps {
   children: React.ReactNode;
@@ -24,8 +23,6 @@ export function Screen({
 }: ScreenProps) {
   const {bottom, top} = useAppSafeArea();
   const {colors} = useAppTheme();
-  const { t } = useTranslation();
-
   const navigation = useNavigation();
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
@@ -45,7 +42,7 @@ export function Screen({
               flexDirection="row">
               <Icon name="arrowLeft" color="primary" />
               <Text preset="paragraphMedium" semiBold ml="s8">
-                {t('toGoBack')}
+                {('toGoBack')}
               </Text>
             </TouchableOpacityBox>
           )}

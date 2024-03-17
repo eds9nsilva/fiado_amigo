@@ -7,7 +7,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import './src/translate/index';
 import { inicializeStorage } from "./src/services/storage/storageService";
 import { mmkvStorage } from "./src/services/storage/mmkvStorage";
-import { AuthProvider } from "src/context/authContext";
 
 inicializeStorage(mmkvStorage)
 
@@ -15,9 +14,7 @@ function App(): JSX.Element {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <Router />
-        </AuthProvider>
+        <Router />
       </ThemeProvider>
     </SafeAreaProvider>
   )

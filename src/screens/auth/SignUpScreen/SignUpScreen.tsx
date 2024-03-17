@@ -14,7 +14,7 @@ import {
 import { useResetNavigationSuccess } from '@hooks';
 
 import { signUpSchema, SignUpSchema } from './signUpSchema';
-import { useTranslation } from 'react-i18next';
+import { useAuthStore } from '@store';
 
 const defaultValues: SignUpSchema = {
   name: '',
@@ -25,7 +25,7 @@ const defaultValues: SignUpSchema = {
 
 export function SignUpScreen() {
   const { reset } = useResetNavigationSuccess();
-  const { t } = useTranslation();
+  const authStore = useAuthStore();
 
   const { control, formState, handleSubmit } = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
@@ -33,58 +33,59 @@ export function SignUpScreen() {
     mode: 'onChange',
   });
 
-  function submitForm() {
-    reset({
-      title: 'Sua conta foi criada com sucesso!',
-      description: 'Agora é só fazer login na nossa plataforma',
-      icon: {
-        name: 'directBox',
-        color: 'success',
-      },
-    });
+  async function submitForm(data: SignUpSchema) {
+    authStore.signUp(data)
+    // reset({
+    //   title: 'Sua conta foi criada com sucesso!',
+    //   description: 'Agora é só fazer login na nossa plataforma',
+    //   icon: {
+    //     name: 'directBox',
+    //     color: 'success',
+    //   },
+    // });
+
   }
   return (
     <Screen scrollable canGoBack>
       <Box alignItems='center'>
         <Text preset="headingLarge">
-          {t('createAnAccount')}
+          {('createAnAccount')}
         </Text>
-        <Text preset="paragraphSmall" mb="s24">{t('logInDescription')}</Text>
+        <Text preset="paragraphSmall" mb="s24">{('logInDescription')}</Text>
       </Box>
       <FormTextInput
         control={control}
         name="name"
         autoCapitalize="words"
-        label={t('yourName')}
-        placeholder={t('typeYourName')}
+        label={('yourName')}
+        placeholder={('typeYourName')}
         boxProps={{ mb: 's20' }}
       />
       <FormTextInput
         control={control}
         name="email"
         label="E-mail"
-        placeholder={t('typeYourEmail')}
+        placeholder={('typeYourEmail')}
         boxProps={{ mb: 's20' }}
       />
       <FormPasswordInput
         control={control}
         name="password"
-        label={t('password')}
-        placeholder={t('typeYourPassword')}
+        label={('password')}
+        placeholder={('typeYourPassword')}
         boxProps={{ mb: 's20' }}
       />
       <FormPasswordInput
         control={control}
         name="confirmPassword"
-        label={t('confirmPassword')}
-        placeholder={t('typeYourPassword')}
-        contextMenuHidden
+        label={('confirmPassword')}
+        placeholder={('typeYourPassword')}
         boxProps={{ mb: 's24' }}
       />
       <Button
         onPress={handleSubmit(submitForm)}
         disabled={!formState.isValid}
-        title={t('createMyAccount')}
+        title={('createMyAccount')}
       />
     </Screen>
   );

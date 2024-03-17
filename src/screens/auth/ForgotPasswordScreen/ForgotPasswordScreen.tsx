@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useResetNavigationSuccess } from '@hooks';
@@ -14,7 +13,6 @@ import {
 
 export function ForgotPasswordScreen() {
   const { reset } = useResetNavigationSuccess();
-  const { t } = useTranslation();
 
   const { control, formState, handleSubmit } = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
@@ -38,24 +36,24 @@ export function ForgotPasswordScreen() {
   return (
     <Screen canGoBack>
       <Text preset="headingLarge" mb="s16">
-        {t('forgotMyPassword')}
+        {('forgotMyPassword')}
       </Text>
       <Text preset="paragraphLarge" mb="s32">
-        {t('forgotMyPasswordDescription')}
+        {('forgotMyPasswordDescription')}
       </Text>
 
       <FormTextInput
         control={control}
         name="email"
         label="E-mail"
-        placeholder={t('typeYourEmail')}
+        placeholder={('typeYourEmail')}
         boxProps={{ mb: 's40' }}
       />
 
       <Button
         disabled={!formState.isValid}
         onPress={handleSubmit(submitForm)}
-        title={t('recoverPassword')}
+        title={('recoverPassword')}
       />
     </Screen>
   );

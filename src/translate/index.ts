@@ -5,9 +5,9 @@ import pt from './pt-br.json';
 import en from './en-eua.json';
 
 i18n.use(initReactI18next).init({
-    lng: 'en',
+    lng: 'pt',
     compatibilityJSON: 'v3',
-    fallbackLng: 'en',
+    fallbackLng: 'pt',
     resources: {
         pt: pt,
         en: en,

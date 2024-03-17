@@ -1,6 +1,7 @@
 export interface User {
     name: string;
     email: string;
+    id: string;
 }
 
 export interface ParamsCreateAccount {
@@ -12,4 +13,5 @@ export interface ParamsCreateAccount {
 export interface UserAPI {
     name: string;
     email: string;
+    id: string;
 }
