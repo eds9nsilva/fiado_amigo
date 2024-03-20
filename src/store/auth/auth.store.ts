@@ -3,7 +3,7 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 
 import { type UserStore } from './authType';
 import { createAccountService } from '@domain';
-import { mmkvStorage } from '@services';
+import { mmkvStorage } from '@storage';
 
 const initialUserStore = {
   user: undefined,
@@ -20,7 +20,10 @@ export const useAuthStore = create<UserStore>()(
       setUser: (user) => set(() => ({ user })),
       setToken: (token) => set(() => ({ token })),
       signUp: async (params) => {
-        await createAccountService.createAccount(params);
+        set(() => ({ loading: true }))
+        const response = await createAccountService.createAccount(params);
+        set(() => ({ loading: false }))
+        return response?.user;
       }
     }),
     {

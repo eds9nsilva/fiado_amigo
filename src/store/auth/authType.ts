@@ -7,7 +7,7 @@ export type UserStore = {
     token?: string;
     setToken: (token?: string) => void;
 
-    signUp: (params: ParamsCreateAccount) => void;
+    signUp: (params: ParamsCreateAccount) => Promise<User | undefined>;
 
     loading: boolean
 };

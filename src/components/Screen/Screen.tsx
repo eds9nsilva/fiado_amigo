@@ -40,6 +40,7 @@ export function Screen({
             <TouchableOpacityBox
               onPress={navigation.goBack}
               mb="s24"
+              mt="s10"
               flexDirection="row">
               <Icon name="arrowLeft" color="primary" />
               <Text preset="paragraphMedium" semiBold ml="s8">

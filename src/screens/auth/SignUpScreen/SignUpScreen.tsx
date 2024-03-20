@@ -35,17 +35,19 @@ export function SignUpScreen() {
   });
 
   async function submitForm(data: SignUpSchema) {
-    authStore.signUp(data)
-    // reset({
-    //   title: 'Sua conta foi criada com sucesso!',
-    //   description: 'Agora é só fazer login na nossa plataforma',
-    //   icon: {
-    //     name: 'directBox',
-    //     color: 'success',
-    //   },
-    // });
-
+    const user = await authStore.signUp(data)
+    if (user) {
+      reset({
+        title: t('successfullyCreatedAccount'),
+        description: t('nowLoginPlatform'),
+        icon: {
+          name: 'tickSquare',
+          color: 'success',
+        },
+      });
+    }
   }
+
   return (
     <Screen scrollable canGoBack>
       <Box alignItems='center'>
@@ -86,6 +88,7 @@ export function SignUpScreen() {
       <Button
         onPress={handleSubmit(submitForm)}
         disabled={!formState.isValid}
+      
         title={t('createMyAccount')}
       />
     </Screen>

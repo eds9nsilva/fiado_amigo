@@ -6,6 +6,7 @@ import { ArrowLeft } from "../../assets/icons/ArrowLeft";
 import { DirectBox } from "../../assets/icons/DirectBox";
 import { EyeOn } from "../../assets/icons/EyeOn";
 import { EyeOff } from "../../assets/icons/EyeOff";
+import { TickSquare } from "../../assets/icons/TickSquare";
 
 export interface IconBase {
     size?: number;
@@ -42,6 +43,7 @@ const iconRegistry = {
     arrowLeft: ArrowLeft,
     eyeOn: EyeOn,
     eyeOff: EyeOff,
+    tickSquare: TickSquare,
 };
 
 type IconType = typeof iconRegistry;

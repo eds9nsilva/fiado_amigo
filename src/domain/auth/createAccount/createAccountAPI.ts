@@ -7,6 +7,6 @@ async function createAccount(params: ParamsCreateAccount): Promise<User> {
     return response.data;
 }
 
-export const auth = {
+export const authApi = {
     createAccount,
 };
