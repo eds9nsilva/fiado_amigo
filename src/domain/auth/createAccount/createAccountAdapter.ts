@@ -7,7 +7,8 @@ import { User, UserAPI } from "./createAccountType";
 function toUser(userAPI: UserAPI): User {
     return {
         name: userAPI.name.toString(),
-        email: userAPI.email.toString()
+        email: userAPI.email.toString(),
+        id: userAPI.id.toString(),
     }
 }
 

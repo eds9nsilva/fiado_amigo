@@ -12,6 +12,10 @@
       "@brand": ["src/brand"],
       "@services": ["src/services"],
       "@domain": ["src/domain"],
+      "@config": ["src/config"],
+      "@context": ["src/context"],
+      "@store": ["src/store"],
+      "@storage": ["src/storage"],
     }
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { t } from 'i18next';
 
 import {
   Box,
@@ -14,7 +15,8 @@ import {
 import { useResetNavigationSuccess } from '@hooks';
 
 import { signUpSchema, SignUpSchema } from './signUpSchema';
-import { useTranslation } from 'react-i18next';
+import { useAuthStore } from '@store';
+import { createAccountService } from '@domain';
 
 const defaultValues: SignUpSchema = {
   name: '',
@@ -25,7 +27,7 @@ const defaultValues: SignUpSchema = {
 
 export function SignUpScreen() {
   const { reset } = useResetNavigationSuccess();
-  const { t } = useTranslation();
+  const authStore = useAuthStore();
 
   const { control, formState, handleSubmit } = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
@@ -33,16 +35,20 @@ export function SignUpScreen() {
     mode: 'onChange',
   });
 
-  function submitForm() {
-    reset({
-      title: 'Sua conta foi criada com sucesso!',
-      description: 'Agora é só fazer login na nossa plataforma',
-      icon: {
-        name: 'directBox',
-        color: 'success',
-      },
-    });
+  async function submitForm(data: SignUpSchema) {
+    const user = await authStore.signUp(data)
+    if (user) {
+      reset({
+        title: t('successfullyCreatedAccount'),
+        description: t('nowLoginPlatform'),
+        icon: {
+          name: 'tickSquare',
+          color: 'success',
+        },
+      });
+    }
   }
+
   return (
     <Screen scrollable canGoBack>
       <Box alignItems='center'>
@@ -78,12 +84,12 @@ export function SignUpScreen() {
         name="confirmPassword"
         label={t('confirmPassword')}
         placeholder={t('typeYourPassword')}
-        contextMenuHidden
         boxProps={{ mb: 's24' }}
       />
       <Button
         onPress={handleSubmit(submitForm)}
         disabled={!formState.isValid}
+        loading={authStore.loading}
         title={t('createMyAccount')}
       />
     </Screen>

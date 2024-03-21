@@ -14,6 +14,18 @@
         "confirmPassword": "Confirmar senha",
         "createMyAccount": "Criar minha conta",
         "toGoBack": "Voltar",
-        "recoverPassword": "Recuperar senha"
+        "recoverPassword": "Recuperar senha",
+        "backToStart": "Voltar ao início",
+        "successfullyCreatedAccount": "Sua conta foi criada com sucesso!",
+        "nowLoginPlatform": "Agora é só fazer login na nossa plataforma",
+        "passwordsMustSame": "As senhas devem ser iguais",
+        "veryShortName": "Nome muito curto",
+        "veryLongName": "Nome muito longo",
+        "invalidEmail": "E-mail inválido",
+        "passwordMust8Characters": "A senha deve ter pelo menos 8 caracteres",
+        "emailAlreadyRegistered": "E-mail já cadastrado",
+        "erroGeneric": "Ocorreu um erro, por favor tente novamente mais tarde!",
+        "incorrectEmailOrpassword": "E-mail ou senha estão incorretos",
+        "rememberMe": "Lembrar-me"
     }
 }

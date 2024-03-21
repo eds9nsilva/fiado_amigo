@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useResetNavigationSuccess } from '@hooks';
@@ -11,10 +10,10 @@ import {
   ForgotPasswordSchema,
   forgotPasswordSchema,
 } from './forgotPasswordSchema';
+import { t } from 'i18next';
 
 export function ForgotPasswordScreen() {
   const { reset } = useResetNavigationSuccess();
-  const { t } = useTranslation();
 
   const { control, formState, handleSubmit } = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
