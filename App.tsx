@@ -18,7 +18,7 @@ function App(): JSX.Element {
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <Toast
-          style={{ marginTop: Platform.OS === 'ios' ? 40 : 0 }}
+          style={{ marginTop: Platform.OS === 'ios' ? 20 : 0 }}
           ref={ref => ((global as ToastType)['toast'] = ref)}
           placement="top"
           textStyle={{ fontSize: 16 }}

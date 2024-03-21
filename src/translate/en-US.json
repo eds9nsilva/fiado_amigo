@@ -24,7 +24,9 @@
         "invalidEmail": "Invalid email",
         "passwordMust8Characters": "Password must be at least 8 characters long",
         "emailAlreadyRegistered": "E-mail already registered",
-        "erroGeneric": "An error occurred, please try again later!"
+        "erroGeneric": "An error occurred, please try again later!",
+        "incorrectEmailOrpassword": "Email or password are incorrect",
+        "rememberMe": "Remember me"
 
     }
 }

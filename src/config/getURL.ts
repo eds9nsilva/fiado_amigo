@@ -7,7 +7,6 @@ import {
   } from '@env'
   
   const getApiURL = () => {
-    console.log(REACT_NATIVE_ENVIRONMENT)
     switch (REACT_NATIVE_ENVIRONMENT) {
       case 'STAGING':
         return REACT_NATIVE_API_URL_STAGING

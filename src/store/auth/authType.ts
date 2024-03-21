@@ -1,4 +1,4 @@
-import { ParamsCreateAccount, User } from "@domain";
+import { ParamsCreateAccount, ParamsLoginAccount, User } from "@domain";
 
 export type UserStore = {
     user?: User;
@@ -9,5 +9,11 @@ export type UserStore = {
 
     signUp: (params: ParamsCreateAccount) => Promise<User | undefined>;
 
+    login: (params: ParamsLoginAccount) => void;
+
     loading: boolean
+
+    rememberMe: boolean
+    setRememberMe: (rememberMe: boolean) => void;
+
 };

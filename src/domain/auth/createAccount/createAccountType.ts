@@ -14,4 +14,6 @@ export interface UserAPI {
     name: string;
     email: string;
     id: string;
+    updated_at: string;
+    created_at: string;
 }

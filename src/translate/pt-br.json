@@ -24,6 +24,8 @@
         "invalidEmail": "E-mail inválido",
         "passwordMust8Characters": "A senha deve ter pelo menos 8 caracteres",
         "emailAlreadyRegistered": "E-mail já cadastrado",
-        "erroGeneric": "Ocorreu um erro, por favor tente novamente mais tarde!"
+        "erroGeneric": "Ocorreu um erro, por favor tente novamente mais tarde!",
+        "incorrectEmailOrpassword": "E-mail ou senha estão incorretos",
+        "rememberMe": "Lembrar-me"
     }
 }

@@ -7,4 +7,4 @@ export * from './Form/FormPasswordInput';
 export * from './Form/FormtextInput';
 export * from './Button/Button';
 export * from './ActivityIndicator/ActivityIndicator';
-export * from './toast/toast';
+export * from './CheckBox/CheckBox';

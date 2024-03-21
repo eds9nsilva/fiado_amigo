@@ -16,6 +16,7 @@ import { useResetNavigationSuccess } from '@hooks';
 
 import { signUpSchema, SignUpSchema } from './signUpSchema';
 import { useAuthStore } from '@store';
+import { createAccountService } from '@domain';
 
 const defaultValues: SignUpSchema = {
   name: '',
@@ -88,7 +89,7 @@ export function SignUpScreen() {
       <Button
         onPress={handleSubmit(submitForm)}
         disabled={!formState.isValid}
-      
+        loading={authStore.loading}
         title={t('createMyAccount')}
       />
     </Screen>
