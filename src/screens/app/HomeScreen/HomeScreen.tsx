@@ -1,10 +1,12 @@
 import React from "react";
-import { Screen, Text } from "@components";
+import { Screen } from "@components";
+import { Banner, ListClients } from "./components";
 
 export function HomeScreen() {
     return (
         <Screen>
-            <Text>HomeScreen</Text>
+            <Banner />
+            <ListClients />
         </Screen>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import { KeyboardAvoidingView, Platform, StatusBar } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -28,6 +28,8 @@ export function Screen({
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
   return (
+    <>
+    <StatusBar backgroundColor={colors.background} barStyle={'dark-content'}/>
     <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -51,6 +53,6 @@ export function Screen({
           {children}
         </Box>
       </Container>
-    </KeyboardAvoidingView>
+    </KeyboardAvoidingView></>
   );
 }

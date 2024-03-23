@@ -8,6 +8,15 @@ import { EyeOn } from "../../assets/icons/EyeOn";
 import { EyeOff } from "../../assets/icons/EyeOff";
 import { TickSquare } from "../../assets/icons/TickSquare";
 import { Checklist } from "../../assets/icons/Checklist";
+import { UserEdit } from "../../assets/icons/UserEdit";
+import { DollarSquare } from "../../assets/icons/DollarSquare";
+import { ShopAdd } from "../../assets/icons/ShopAdd";
+import { StatusUp } from "../../assets/icons/StatusUp";
+import { More } from "../../assets/icons/More";
+import { CloseSquare } from "../../assets/icons/CloseSquare";
+import { Calendar } from "../../assets/icons/Calendar";
+import { Cup } from "../../assets/icons/Cup";
+import { MinusSquare } from "../../assets/icons/MinusSquare";
 
 export interface IconBase {
     size?: number;
@@ -46,8 +55,17 @@ const iconRegistry = {
     eyeOff: EyeOff,
     tickSquare: TickSquare,
     checklist: Checklist,
+    userEdit: UserEdit,
+    dollarSquare: DollarSquare,
+    shopAdd: ShopAdd,
+    statusUp: StatusUp,
+    more: More,
+    closeSquare: CloseSquare,
+    calendar: Calendar,
+    cup: Cup,
+    minusSquare: MinusSquare,
 };
 
 type IconType = typeof iconRegistry;
 
-type IconNames = keyof IconType;
+export type IconNames = keyof IconType;
