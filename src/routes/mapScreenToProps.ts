@@ -1,5 +1,5 @@
-import {IconProps} from '@components';
-import {AppTabBottomTabParamList} from '@routes';
+import { IconProps } from '@components';
+import { AppTabBottomTabParamList } from '@routes';
 
 export const mapScreenToProps: Record<
   keyof AppTabBottomTabParamList,
@@ -7,36 +7,31 @@ export const mapScreenToProps: Record<
     label: string;
     icon: {
       focused: IconProps['name'];
-      unfocused: IconProps['name'];
     };
   }
 > = {
   HomeScreen: {
     label: 'Início',
     icon: {
-      focused: 'directBox',
-      unfocused: 'arrowLeft',
+      focused: 'home',
     },
   },
   NewPostScreen: {
-    label: 'Novo post',
+    label: 'Pendências',
     icon: {
-      focused: 'arrowLeft',
-      unfocused: 'arrowLeft',
+      focused: 'dollarSquare',
     },
   },
   FavoriteScreen: {
-    label: 'Favorito',
+    label: 'Produtos',
     icon: {
-      focused: 'arrowLeft',
-      unfocused: 'arrowLeft',
+      focused: 'shopAdd',
     },
   },
   MyProfileScreen: {
     label: 'Meu perfil',
     icon: {
-      focused: 'arrowLeft',
-      unfocused: 'arrowLeft',
+      focused: 'userSquare',
     },
   },
 };

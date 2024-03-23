@@ -49,7 +49,9 @@ export function Banner() {
                     </Text>
                 </Box>
             </Box>
-
+            <Box alignItems="flex-start" width={'100%'}>
+                <Text preset="paragraphCaptionSmall" color="grayWhite" ml="s4">Cadastros e relátorio</Text>
+            </Box>
             <Box flexDirection="row" alignItems="center" alignContent="center">
 
                 {CardsBanner({

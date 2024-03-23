@@ -17,6 +17,8 @@ import { CloseSquare } from "../../assets/icons/CloseSquare";
 import { Calendar } from "../../assets/icons/Calendar";
 import { Cup } from "../../assets/icons/Cup";
 import { MinusSquare } from "../../assets/icons/MinusSquare";
+import { Home } from "../../assets/icons/Home";
+import { UserSquare } from "../../assets/icons/userSquare";
 
 export interface IconBase {
     size?: number;
@@ -64,6 +66,8 @@ const iconRegistry = {
     calendar: Calendar,
     cup: Cup,
     minusSquare: MinusSquare,
+    home: Home,
+    userSquare: UserSquare,
 };
 
 type IconType = typeof iconRegistry;
