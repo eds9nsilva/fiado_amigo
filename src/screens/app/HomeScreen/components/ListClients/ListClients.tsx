@@ -1,50 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, FormTextInput, Text } from "@components";
 import { useForm } from "react-hook-form";
 import { Card, enumStatus } from "./Components/Card/Card";
 import { FlatList, ListRenderItem } from "react-native";
-
-
-
-const data = [
-    {
-        id: 0,
-        name: "Antonio Edson",
-        status: enumStatus.paid
-    },
-    {
-        id: 1,
-        name: "Antonio Edson",
-        status: enumStatus.closeToWin
-    },
-    {
-        id: 2,
-        name: "Antonio Edson",
-        status: enumStatus.paid
-    },
-    {
-        id: 3,
-        name: "Antonio Edson",
-        status: enumStatus.late
-    },
-    {
-        id: 4,
-        name: "Antonio Edson",
-        status: enumStatus.paid
-    },
-    {
-        id: 5,
-        name: "Antonio Edson",
-        status: enumStatus.closeToWin
-    },
-    {
-        id: 6,
-        name: "Antonio Edson",
-        status: enumStatus.late
-    },
-]
+import { Client, clientService } from "@domain";
 
 export function ListClients() {
+    const [clients, setClients] = useState<Client[] | undefined>()
+
+    const getClients = async () => {
+        const clients = await clientService.listClients()
+        setClients(clients)
+    }
+
+    useEffect(() => {
+        getClients()
+    }, [])
+
     const { control, formState, handleSubmit } = useForm({
         defaultValues: {
             search: '',
@@ -52,13 +24,9 @@ export function ListClients() {
         mode: 'onChange',
     });
 
-    const renderItems: ListRenderItem<{
-        id: number;
-        name: string;
-        status: enumStatus;
-    }> = ({ item }) => (
-        <Card name={item.name} status={item.status} />
-    );
+    const renderItems: ListRenderItem<Client> = ({ item }) => {
+        return <Card name={item.name} status={enumStatus.paid} />
+    };
 
 
     return (
@@ -72,9 +40,9 @@ export function ListClients() {
             />
             <Box height={410} mt="s10">
                 <FlatList
-                    data={data}
+                    data={clients}
                     renderItem={renderItems}
-                    contentContainerStyle={{bottom: 10}}
+                    contentContainerStyle={{ bottom: 10 }}
                     keyExtractor={item => String(item.id)}
                 />
             </Box>

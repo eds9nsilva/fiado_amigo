@@ -1,8 +1,10 @@
 import { Box, Icon, Text, TouchableOpacityBox } from "@components";
-import React from "react";
+import { clientService } from "@domain";
+import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 
 export function Banner() {
+
     return (
         <Box
             height={166}
@@ -57,7 +59,7 @@ export function Banner() {
                 {CardsBanner({
                     children: <Icon name="userEdit" size={26} color="greenPrimary" />,
                     text: 'Clientes',
-                    onPress: () => { }
+                    onPress: () => {} 
                 })}
                 {CardsBanner({
                     children: <Icon name="dollarSquare" size={26} color="greenPrimary" />,

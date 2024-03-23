@@ -16,4 +16,5 @@ export type UserStore = {
     rememberMe: boolean
     setRememberMe: (rememberMe: boolean) => void;
 
+    logout: () => void;
 };

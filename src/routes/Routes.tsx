@@ -8,7 +8,8 @@ import { useAuthStore } from '@store';
 
 export function Router() {
   const authStore = useAuthStore();
-
+  console.log(authStore.user)
+  
   return (
     <NavigationContainer>
       {authStore.token ? <AppStack /> : <AuthStack />}

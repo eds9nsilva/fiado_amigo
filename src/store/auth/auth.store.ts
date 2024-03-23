@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-
+import { useNavigation } from '@react-navigation/native';
 import { type UserStore } from './authType';
 import {
   loginAccountService,
@@ -29,7 +29,7 @@ export const useAuthStore = create<UserStore>()(
       login: async (params) => {
         set(() => ({ loading: true }))
         const response = await loginAccountService.loginAccount(params);
-        api.defaults.headers.Authorization = response?.token ?? '';
+        api.defaults.headers.Authorization = `Bearer ${response?.token}`;
         set(() => ({ user: response?.user }))
         set(() => ({ token: response?.token }))
         set(() => ({ loading: false }))
@@ -42,12 +42,16 @@ export const useAuthStore = create<UserStore>()(
         const response = await createAccountService.createAccount(params);
         set(() => ({ loading: false }))
         return response?.user;
-      }
+      },
+      logout: () => {
+        set(() => ({ token: undefined }))
+
+      },
     }),
     {
       name: KEY_STORAGE,
       storage: createJSONStorage(() => mmkvStorage),
-        partialize: (state) => ({
+      partialize: (state) => ({
         token: state.token,
         user: state.user
       }),
