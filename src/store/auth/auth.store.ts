@@ -19,6 +19,7 @@ const initialUserStore = {
 const KEY_STORAGE = 'user-storage';
 
 export const useAuthStore = create<UserStore>()(
+
   persist(
     (set) => ({
       ...initialUserStore,
@@ -46,6 +47,10 @@ export const useAuthStore = create<UserStore>()(
     {
       name: KEY_STORAGE,
       storage: createJSONStorage(() => mmkvStorage),
+        partialize: (state) => ({
+        token: state.token,
+        user: state.user
+      }),
     },
   ),
 );
