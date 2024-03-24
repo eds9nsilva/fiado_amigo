@@ -10,7 +10,7 @@ function toClient(clientApi: ClientResponseApi): Client {
         name: clientApi.name.toString(),
         email: clientApi.email?.toString() ?? null,
         phone: clientApi.phone?.toString() ?? null,
-        date_nasc: clientApi.date_nasc?.toString() ?? null
+        birthDate: clientApi.date_nasc?.toString() ?? null
     }
 }
 

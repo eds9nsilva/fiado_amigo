@@ -1,10 +1,10 @@
+import React from "react";
 import { Box, Icon, Text, TouchableOpacityBox } from "@components";
-import { clientService } from "@domain";
-import React, { useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 
 export function Banner() {
-
+    const { navigate } = useNavigation()
     return (
         <Box
             height={166}
@@ -59,7 +59,7 @@ export function Banner() {
                 {CardsBanner({
                     children: <Icon name="userEdit" size={26} color="greenPrimary" />,
                     text: 'Clientes',
-                    onPress: () => {} 
+                    onPress: () => { navigate("RegisterClients") }
                 })}
                 {CardsBanner({
                     children: <Icon name="dollarSquare" size={26} color="greenPrimary" />,

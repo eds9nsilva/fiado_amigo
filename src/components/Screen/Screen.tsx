@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform, StatusBar } from 'react-native';
+import { KeyboardAvoidingView, Platform, StatusBar, StatusBarStyle } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -13,6 +13,7 @@ interface ScreenProps extends BoxProps {
   children: React.ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
+  barStyle?: StatusBarStyle,
 }
 
 export function Screen({
@@ -20,6 +21,7 @@ export function Screen({
   canGoBack = false,
   scrollable = false,
   style,
+  barStyle = 'dark-content',
   ...boxProps
 }: ScreenProps) {
   const { bottom, top } = useAppSafeArea();
@@ -29,30 +31,30 @@ export function Screen({
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
   return (
     <>
-    <StatusBar backgroundColor={colors.background} barStyle={'dark-content'}/>
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <Container backgroundColor={colors.background}>
-        <Box
-          paddingHorizontal="s24"
-          style={[{ paddingTop: top, paddingBottom: bottom }, style]}
-          {...boxProps}>
-          {canGoBack && (
-            <TouchableOpacityBox
-              onPress={navigation.goBack}
-              mb="s24"
-              mt="s10"
-              flexDirection="row">
-              <Icon name="arrowLeft" color="primary" />
-              <Text preset="paragraphMedium" semiBold ml="s8">
-                {t('toGoBack')}
-              </Text>
-            </TouchableOpacityBox>
-          )}
-          {children}
-        </Box>
-      </Container>
-    </KeyboardAvoidingView></>
+      <StatusBar backgroundColor={colors.background} barStyle={barStyle} />
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <Container backgroundColor={colors.background}>
+          <Box
+            paddingHorizontal="s24"
+            style={[{ paddingTop: top, paddingBottom: bottom }, style]}
+            {...boxProps}>
+            {canGoBack && (
+              <TouchableOpacityBox
+                onPress={navigation.goBack}
+                mb="s24"
+                mt="s10"
+                flexDirection="row">
+                <Icon name="arrowLeft" color="primary" />
+                <Text preset="paragraphMedium" semiBold ml="s8">
+                  {t('toGoBack')}
+                </Text>
+              </TouchableOpacityBox>
+            )}
+            {children}
+          </Box>
+        </Container>
+      </KeyboardAvoidingView></>
   );
 }

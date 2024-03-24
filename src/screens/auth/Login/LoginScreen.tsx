@@ -7,17 +7,15 @@ import { LoginSchema, loginSchema } from "./LoginSchema";
 import { AuthScreenProps } from "@routes";
 import { t } from 'i18next';
 import { useAuthStore } from "@store";
-import { useAppTheme } from "@hooks";
 
 export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
     const authStore = useAuthStore();
-    const { colors } = useAppTheme();
 
     const { control, formState, handleSubmit } = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
-            email: '',
-            password: '',
+            email: authStore.user?.email,
+            password: ''
         },
         mode: 'onChange',
     });
@@ -41,7 +39,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
     return (
         <Screen scrollable>
             <Box alignItems="center" mt="s40" mb="s48">
-                <SimpleLogo width={300} />
+                <SimpleLogo width={300} color="greenPrimary" />
                 <Text preset="headingMedium" semiBold mb="s8" mt="s32">{t('logIn')}</Text>
                 <Text preset="paragraphSmall">{t('logInDescription')}</Text>
             </Box>
@@ -60,8 +58,8 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
                 boxProps={{ mb: 's20' }}
             />
             <Box flexDirection="row" justifyContent="space-between">
-                <TouchableOpacityBox 
-                    flexDirection="row" 
+                <TouchableOpacityBox
+                    flexDirection="row"
                     alignItems="center"
                     onPress={handlerRememberMe}
                 >

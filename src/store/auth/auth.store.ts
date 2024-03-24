@@ -43,9 +43,13 @@ export const useAuthStore = create<UserStore>()(
         set(() => ({ loading: false }))
         return response?.user;
       },
-      logout: () => {
-        set(() => ({ token: undefined }))
-
+    logout: (rememberMe) => {
+        if (rememberMe) {
+          set(() => ({ token: undefined }))
+        } else {
+          set(() => ({ token: undefined }))
+          set(() => ({ user: undefined }))
+        }
       },
     }),
     {
@@ -53,7 +57,8 @@ export const useAuthStore = create<UserStore>()(
       storage: createJSONStorage(() => mmkvStorage),
       partialize: (state) => ({
         token: state.token,
-        user: state.user
+        user: state.user,
+        rememberMe: state.rememberMe,
       }),
     },
   ),

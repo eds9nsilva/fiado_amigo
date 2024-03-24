@@ -14,5 +14,13 @@ export interface Client {
     name: string,
     email: string | null,
     phone: string | null,
-    date_nasc: string | null,
+    birthDate: string | null,
+}
+
+export interface createClientParams {
+    name: string,
+    email?: string,
+    phone?: string,
+    date_nasc?: string,
+    user_id: string
 }

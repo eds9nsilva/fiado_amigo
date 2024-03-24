@@ -11,7 +11,7 @@ const auth =  useAuthStore()
                 alignItems="center"
                 height={30}
                 backgroundColor="buttonPrimary"
-                onPress={() => auth.logout()}
+                onPress={() => auth.logout(auth.rememberMe)}
             >
                 <Text>SAIR</Text>
             </TouchableOpacityBox>
