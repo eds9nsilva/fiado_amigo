@@ -35,6 +35,7 @@ export function RegisterClients() {
     defaultValues,
     mode: 'onChange',
   });
+  const isNameFilled = formState.dirtyFields.name;
 
   async function submitRegisterClient(data: RegisterClientsSchema) {
     setLoading(true);
@@ -49,31 +50,31 @@ export function RegisterClients() {
     <Screen scrollable canGoBack>
       <Box alignItems='center' mb='s20'>
         <Text preset="headingMedium">
-          {'Cadastro de Cliente'}
+          {t('customerRegistration')}
         </Text>
       </Box>
       <FormTextInput
         control={control}
         name="name"
         autoCapitalize="words"
-        label={'* Nome'}
-        placeholder={'Digite o nome'}
+        label={'* ' + t('name')}
+        placeholder={t('enterName')}
         boxProps={{ mb: 's20' }}
       />
       <FormTextInput
         control={control}
         name="phone"
         autoCapitalize="words"
-        label={'Telefone'}
+        label={t('phone')}
         type='phone'
-        placeholder={'Digite o telefone'}
+        placeholder={t('enterPhone')}
         boxProps={{ mb: 's20' }}
       />
       <FormTextInput
         control={control}
         name="email"
         label="E-mail"
-        placeholder={'Digite e-mail'}
+        placeholder={t('enterEmail')}
         boxProps={{ mb: 's20' }}
       />
       <FormTextInput
@@ -81,15 +82,15 @@ export function RegisterClients() {
         name="birthDate"
         type='birthDate'
         autoCapitalize="words"
-        label={'Data Nascimento'}
-        placeholder={'Digite o nome'}
+        label={t('dateOfBirth')}
+        placeholder={t('enterDateOfBirth')}
         boxProps={{ mb: 's20' }}
       />
       <Button
         onPress={handleSubmit(submitRegisterClient)}
-        disabled={!formState.isValid}
+        disabled={!isNameFilled}
         loading={loading}
-        title={'Cadastrar cliente'}
+        title={t('registerCustomer')}
       />
     </Screen>
   );

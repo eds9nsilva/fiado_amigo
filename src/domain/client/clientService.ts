@@ -10,16 +10,9 @@ async function listClients() {
     const response = await clientApi.listClient();
     return response.map(clientAdapter.toClient)
   } catch (error) {
-    const erroApi: ErrorApiResponse = error as ErrorApiResponse;
-    if (erroApi.response.data.message == IncorrectEmailOrpassword) {
-      toast?.show(t('incorrectEmailOrpassword'), {
-        type: 'warning',
-      });
-    } else {
-      toast?.show(t('erroGeneric'), {
-        type: 'danger',
-      });
-    }
+    toast?.show(t('erroGeneric'), {
+      type: 'danger',
+    });
   }
 }
 
@@ -27,13 +20,13 @@ async function createClient(params: RegisterClientsSchema, user_id: string) {
   try {
     const body = {
       name: params.name,
-      email: params.email ?? undefined,
-      phone: params.phone ?? undefined,
-      date_nasc: params.birthDate ?? undefined,
+      email: params.email?.length != 0 ? params.email : undefined,
+      phone: params.phone?.length != 0 ? params.phone : undefined,
+      date_nasc: params.birthDate?.length != 0 ? params.phone : undefined,
       user_id: user_id
     }
     const response = await clientApi.createClient(body);
-    toast?.show('Cliente cadastrado com sucesso!', {
+    toast?.show(t('customerRegisteredSuccessfully'), {
       type: 'success',
     });
     return clientAdapter.toClient(response)

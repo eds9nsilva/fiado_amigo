@@ -26,7 +26,17 @@
         "emailAlreadyRegistered": "E-mail already registered",
         "erroGeneric": "An error occurred, please try again later!",
         "incorrectEmailOrpassword": "Email or password are incorrect",
-        "rememberMe": "Remember me"
-
+        "rememberMe": "Remember me",
+        "customerRegisteredSuccessfully": "Customer registered successfully!",
+        "customerRegistration": "Customer registration",
+        "name": "Name",
+        "phone": "Phone",
+        "enterName": "Enter name",
+        "enterPhone": "Enter phone",
+        "enterEmail": "Enter e-mail",
+        "dateOfBirth": "Date Of Birth",
+        "enterDateOfBirth": "Enter date of birth",
+        "registerCustomer": "Register customer",
+        "invalidFormat": "Invalid format"
     }
 }
