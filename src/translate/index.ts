@@ -6,7 +6,7 @@ import translationPTBR from 'zod-i18n-map/locales/pt/zod.json';
 import { zodI18nMap } from 'zod-i18n-map';
 import { z } from 'zod';
 
-import PTBR from './pt-BR.json';
+import PTBR from './pt-br.json';
 import ENUS from './en-US.json';
 
 const resources = {

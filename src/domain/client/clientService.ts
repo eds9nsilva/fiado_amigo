@@ -49,8 +49,23 @@ async function searchClient(params: shearchClientParams) {
     });
   }
 }
+
+async function deleteClient(id_client: string) {
+  try {
+    await clientApi.deleteClient(id_client);
+    toast?.show('Cliente apagado com sucesso!', {
+      type: 'success',
+    });
+  } catch (error) {
+    toast?.show(t('erroGeneric'), {
+      type: 'danger',
+    });
+  }
+}
+
 export const clientService = {
   listClients,
   createClient,
-  searchClient
+  searchClient,
+  deleteClient
 };

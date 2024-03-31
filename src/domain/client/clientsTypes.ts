@@ -42,3 +42,7 @@ export interface shearchClientParams {
 export interface listClientsParams {
     user_id: string
 }
+
+export interface deleteClientProps {
+    id: string
+}

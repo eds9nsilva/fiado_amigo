@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { ModalOptions } from "../ModalOptions/ModalOptions";
 import { enumStatus } from "@domain";
+import { useClientsStore } from "@store";
+import { ModalConfirmDelete } from "../ModalConfirmDelete/ModalConfirmDelete";
 
 
 interface getStatus {
@@ -14,11 +16,15 @@ interface getStatus {
 
 export interface cardProps {
     status: enumStatus,
-    name: string
+    name: string,
+    id: string
 }
 
-export function Card({ status, name }: cardProps) {
+export function Card({ status, name, id }: cardProps) {
+    const useClients = useClientsStore();
+
     const [showModalOptions, setShowModalOptions] = useState<Boolean>();
+    const [showModalConfirmDelete, setShowModalConfirmDelete] = useState<Boolean>();
 
     function getStatus(): getStatus {
         switch (status) {
@@ -48,6 +54,11 @@ export function Card({ status, name }: cardProps) {
                     icon: "tickSquare"
                 }
         }
+    }
+
+    async function deleClient() {
+        setShowModalOptions(!showModalOptions)
+        setShowModalConfirmDelete(true)
     }
 
     return (
@@ -155,10 +166,21 @@ export function Card({ status, name }: cardProps) {
             </Box>
             {
                 showModalOptions && (
-                    <ModalOptions 
-                        onClose={() => setShowModalOptions(!showModalOptions)} 
-                        onPressDeleteClient={() => {}} 
-                        onPressViewDetails={() => {}}
+                    <ModalOptions
+                        onClose={() => setShowModalOptions(!showModalOptions)}
+                        onPressDeleteClient={() => deleClient()}
+                        onPressViewDetails={() => { }}
+                    />
+                )
+            }
+            {
+                showModalConfirmDelete && (
+                    <ModalConfirmDelete
+                        onCancel={() => setShowModalConfirmDelete(false)}
+                        onPressConfirmDeleteClient={() => { 
+                            setShowModalConfirmDelete(false)
+                            useClients.deleteClient(id) 
+                        }} 
                     />
                 )
             }
