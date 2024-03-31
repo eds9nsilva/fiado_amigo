@@ -76,7 +76,8 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
                     onPress={navigateToForgotPasswordScreen}
                     color="primary"
                     preset="paragraphSmall"
-                    bold>
+                    bold
+                >
                     {t('forgotMyPassword')}
                 </Text>
             </Box>

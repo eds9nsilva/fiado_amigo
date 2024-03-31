@@ -3,12 +3,8 @@ import { ThemeColors } from "@theme";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { ModalOptions } from "../ModalOptions/ModalOptions";
+import { enumStatus } from "@domain";
 
-export enum enumStatus {
-    'late',
-    'paid',
-    'closeToWin'
-}
 
 interface getStatus {
     title: string
@@ -44,6 +40,12 @@ export function Card({ status, name }: cardProps) {
                     title: 'Pendências perto de vencer',
                     color: 'yelloWarning',
                     icon: "minusSquare"
+                }
+            case enumStatus.noMoviment:
+                return {
+                    title: 'Pendências pagas',
+                    color: 'greenPrimary',
+                    icon: "tickSquare"
                 }
         }
     }

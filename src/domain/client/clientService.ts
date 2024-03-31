@@ -2,7 +2,7 @@ import { clientAdapter } from './clientAdapter';
 import { t } from 'i18next';
 import { clientApi } from './clientsAPI';
 import { RegisterClientsSchema } from '../../screens/app/RegisterClients/signUpSchema';
-import { listClientsParams } from './clientsTypes';
+import { listClientsParams, shearchClientParams } from './clientsTypes';
 
 async function listClients({ user_id }: listClientsParams) {
   try {
@@ -39,7 +39,18 @@ async function createClient(params: RegisterClientsSchema, user_id: string) {
   }
 }
 
+async function searchClient(params: shearchClientParams) {
+  try {
+    const response = await clientApi.shearchClient(params);
+    return response.map(clientAdapter.toClient)
+  } catch (error) {
+    toast?.show(t('erroGeneric'), {
+      type: 'danger',
+    });
+  }
+}
 export const clientService = {
   listClients,
-  createClient
+  createClient,
+  searchClient
 };
