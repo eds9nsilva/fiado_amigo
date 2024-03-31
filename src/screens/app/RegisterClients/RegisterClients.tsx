@@ -13,7 +13,7 @@ import {
 } from '@components';
 
 import { registerClientsSchema, RegisterClientsSchema } from './signUpSchema';
-import { useAuthStore } from '@store';
+import { useAuthStore, useClientsStore } from '@store';
 import { clientService } from '@domain';
 import { useNavigation } from '@react-navigation/native';
 
@@ -26,6 +26,8 @@ const defaultValues: RegisterClientsSchema = {
 
 export function RegisterClients() {
   const authStore = useAuthStore();
+  const useClients = useClientsStore();
+
   const { goBack } = useNavigation();
 
   const [loading, setLoading] = useState<boolean>();
@@ -42,6 +44,7 @@ export function RegisterClients() {
     const client = await clientService.createClient(data, authStore.user!.id)
     setLoading(false);
     if (client) {
+      useClients.getClients({ user_id: authStore.user!.id })
       goBack()
     }
   }

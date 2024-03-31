@@ -3,15 +3,14 @@ import { ActivityIndicator, Box, FormTextInput, Text, EmptyList } from "@compone
 import { useForm } from "react-hook-form";
 import { Card } from "./Components/Card/Card";
 import { FlatList, ListRenderItem } from "react-native";
-import { Client, clientService, enumStatus } from "@domain";
-import { useAuthStore } from "@store";
+import { Client } from "@domain";
+import { useAuthStore, useClientsStore } from "@store";
 
 export function ListClients() {
     const useAuth = useAuthStore()
+    const useClients = useClientsStore();
     const { control } = useForm();
 
-    const [clients, setClients] = useState<Client[] | undefined>();
-    const [loadingGetClientes, setLoadingGetClients] = useState<boolean>(false);
     const [nameSearch, setNameSearch] = useState<string>('');
 
     const timerRef = useRef<NodeJS.Timeout>();
@@ -20,14 +19,11 @@ export function ListClients() {
         getClients()
     }, [])
 
-    const getClients = async (isSearchNameClean? : boolean) => {
+    const getClients = async (isSearchNameClean?: boolean) => {
         if (nameSearch.length > 0 && !isSearchNameClean) {
             return
         }
-        setLoadingGetClients(true)
-        const clients = await clientService.listClients({ user_id: useAuth.user!.id })
-        setClients(clients)
-        setLoadingGetClients(false)
+        useClients.getClients({ user_id: useAuth.user!.id })
     }
 
     const delayedSearch = (text: string) => {
@@ -45,17 +41,15 @@ export function ListClients() {
     };
 
     const searchClientByName = async (name: string) => {
-        setLoadingGetClients(true)
-        const clients = await clientService.searchClient({ name, user_id: useAuth.user!.id });
-        setClients(clients);
-        setLoadingGetClients(false)
+        const params = {
+            name,
+            user_id: useAuth.user!.id,
+        }
+        useClients.searchClient(params)
     };
 
-
-
-
     const renderItems: ListRenderItem<Client> = ({ item }) => {
-        return <Card key={item.id} name={item.name} status={item.status} />
+        return <Card key={item.id} name={item.name} status={item.status} id={item.id} />
     };
 
 
@@ -71,15 +65,15 @@ export function ListClients() {
                 onChangeText={(text) => delayedSearch(text)}
             />
             <Box height={410} mt="s10">
-                {loadingGetClientes && (
+                {useClients.loading && (
                     <Box mb="s10">
                         <ActivityIndicator color="greenPrimary" />
                     </Box>
                 )}
                 <FlatList
-                    data={clients}
+                    data={useClients.clients}
                     renderItem={renderItems}
-                    refreshing={loadingGetClientes}
+                    refreshing={useClients.loading}
                     onRefresh={getClients}
                     ListEmptyComponent={<EmptyList size={280} preset="headingMedium" mt="s20" />}
                     contentContainerStyle={{ bottom: 10 }}
