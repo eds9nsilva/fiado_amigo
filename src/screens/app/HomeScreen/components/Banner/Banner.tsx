@@ -51,7 +51,7 @@ export function Banner() {
                     </Text>
                 </Box>
             </Box>
-            <Box alignItems="flex-start" width={'100%'}>
+            <Box alignItems="flex-start" width={'100%'} mt="s8" mb="s4">
                 <Text preset="paragraphCaptionSmall" color="grayWhite" ml="s4">Cadastros e relátorio</Text>
             </Box>
             <Box flexDirection="row" alignItems="center" alignContent="center">
@@ -64,11 +64,6 @@ export function Banner() {
                 {CardsBanner({
                     children: <Icon name="dollarSquare" size={26} color="greenPrimary" />,
                     text: 'Pendências',
-                    onPress: () => { }
-                })}
-                {CardsBanner({
-                    children: <Icon name="shopAdd" size={26} color="greenPrimary" />,
-                    text: 'Produtos',
                     onPress: () => { }
                 })}
                 {CardsBanner({
@@ -92,7 +87,7 @@ function CardsBanner({ children, text, onPress }: PropsCardsBanner) {
         <Box alignItems="center">
             <TouchableOpacityBox
                 height={38}
-                width={68}
+                width={94}
                 backgroundColor="background"
                 ml="s4"
                 mr="s4"

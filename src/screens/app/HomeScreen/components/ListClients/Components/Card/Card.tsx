@@ -1,7 +1,8 @@
 import { Box, Icon, IconNames, Text, TouchableOpacityBox } from "@components";
 import { ThemeColors } from "@theme";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
+import { ModalOptions } from "../ModalOptions/ModalOptions";
 
 export enum enumStatus {
     'late',
@@ -21,6 +22,7 @@ export interface cardProps {
 }
 
 export function Card({ status, name }: cardProps) {
+    const [showModalOptions, setShowModalOptions] = useState<Boolean>();
 
     function getStatus(): getStatus {
         switch (status) {
@@ -72,7 +74,7 @@ export function Card({ status, name }: cardProps) {
                     name="more"
                     color="grayWhite"
                     size={32}
-                    onPress={() => { }}
+                    onPress={() => setShowModalOptions(!showModalOptions)}
                 />
             </Box>
             <Box padding="s10">
@@ -149,6 +151,16 @@ export function Card({ status, name }: cardProps) {
 
                 </Box>
             </Box>
+            {
+                showModalOptions && (
+                    <ModalOptions 
+                        onClose={() => setShowModalOptions(!showModalOptions)} 
+                        onPressDeleteClient={() => {}} 
+                        onPressViewDetails={() => {}}
+                    />
+                )
+            }
+
         </Box>
     )
 }

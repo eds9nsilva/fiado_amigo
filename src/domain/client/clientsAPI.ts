@@ -1,9 +1,9 @@
 import { api } from "@services";
-import { ClientResponseApi, createClientParams } from "./clientsTypes";
+import { ClientResponseApi, createClientParams, listClientsParams } from "./clientsTypes";
 
 
-async function listClient(): Promise<ClientResponseApi[] | []> {
-    const response = await api.get('/client');
+async function listClient(params: listClientsParams): Promise<ClientResponseApi[] | []> {
+    const response = await api.get(`/client/user/${params.user_id}`);
     return response.data;
 }
 

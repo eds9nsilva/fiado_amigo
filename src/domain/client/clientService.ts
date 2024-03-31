@@ -1,13 +1,15 @@
-import { ErrorApiResponse } from 'src/@types';
 import { clientAdapter } from './clientAdapter';
-import { IncorrectEmailOrpassword } from '@services';
 import { t } from 'i18next';
 import { clientApi } from './clientsAPI';
 import { RegisterClientsSchema } from '../../screens/app/RegisterClients/signUpSchema';
+import { listClientsParams } from './clientsTypes';
 
-async function listClients() {
+async function listClients({ user_id }: listClientsParams) {
   try {
-    const response = await clientApi.listClient();
+    const params: listClientsParams = {
+      user_id,
+    }
+    const response = await clientApi.listClient(params);
     return response.map(clientAdapter.toClient)
   } catch (error) {
     toast?.show(t('erroGeneric'), {
@@ -22,7 +24,7 @@ async function createClient(params: RegisterClientsSchema, user_id: string) {
       name: params.name,
       email: params.email?.length != 0 ? params.email : undefined,
       phone: params.phone?.length != 0 ? params.phone : undefined,
-      date_nasc: params.birthDate?.length != 0 ? params.phone : undefined,
+      date_nasc: params.birthDate?.length != 0 ? params.birthDate : undefined,
       user_id: user_id
     }
     const response = await clientApi.createClient(body);
@@ -30,7 +32,6 @@ async function createClient(params: RegisterClientsSchema, user_id: string) {
       type: 'success',
     });
     return clientAdapter.toClient(response)
-
   } catch (error) {
     toast?.show(t('erroGeneric'), {
       type: 'danger',

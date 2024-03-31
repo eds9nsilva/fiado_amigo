@@ -24,3 +24,7 @@ export interface createClientParams {
     date_nasc?: string,
     user_id: string
 }
+
+export interface listClientsParams {
+    user_id: string
+}
