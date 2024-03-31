@@ -10,11 +10,13 @@ import { useAppTheme } from '@hooks';
 
 import { Box, BoxProps } from '../Box/Box';
 import { $fontFamily, $fontSizes, Text } from '../Text/Text';
+import MaskInput, { Masks } from 'react-native-mask-input';
 export interface TextInputProps extends RNTextInputProps {
     label?: string;
     errorMessage?: string;
     RightComponent?: React.ReactElement;
     boxProps?: BoxProps;
+    type?: 'phone' | 'normal' | 'birthDate'
 }
 
 export function TextInput({
@@ -22,6 +24,7 @@ export function TextInput({
     errorMessage,
     RightComponent,
     boxProps,
+    type = "normal",
     ...rnTextInputProps
 }: TextInputProps) {
     const { colors } = useAppTheme();
@@ -51,13 +54,27 @@ export function TextInput({
                     )
                 }
                 <Box {...$textInputContainer}>
-                    <RNTextInput
-                        autoCapitalize="none"
-                        ref={inputRef}
-                        style={$textInputStyle}
-                        placeholderTextColor={colors.gray2}
-                        {...rnTextInputProps}
-                    />
+                    {
+                        type == 'normal' ? (
+
+                            <RNTextInput
+                                autoCapitalize="none"
+                                ref={inputRef}
+                                style={$textInputStyle}
+                                placeholderTextColor={colors.gray2}
+                                {...rnTextInputProps}
+                            />) : (
+                            <MaskInput
+                                mask={type == 'phone' ? Masks.BRL_PHONE : Masks.DATE_DDMMYYYY}
+                                autoCapitalize="none"
+                                ref={inputRef}
+                                style={$textInputStyle}
+                                placeholderTextColor={colors.gray2}
+                                {...rnTextInputProps}
+                            />
+                        )
+                    }
+
                     {RightComponent && (
                         <Box justifyContent="center" ml="s16">
                             {RightComponent}

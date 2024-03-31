@@ -8,3 +8,4 @@ export * from './Form/FormtextInput';
 export * from './Button/Button';
 export * from './ActivityIndicator/ActivityIndicator';
 export * from './CheckBox/CheckBox';
+export * from './EmptyList/EmptyList'

@@ -26,6 +26,17 @@
         "emailAlreadyRegistered": "E-mail já cadastrado",
         "erroGeneric": "Ocorreu um erro, por favor tente novamente mais tarde!",
         "incorrectEmailOrpassword": "E-mail ou senha estão incorretos",
-        "rememberMe": "Lembrar-me"
+        "rememberMe": "Lembrar-me",
+        "customerRegisteredSuccessfully": "Cliente cadastrado com sucesso!",
+        "customerRegistration": "Cadastro de Cliente",
+        "name": "Nome",
+        "phone": "Telefone",
+        "enterPhone": "Digite o telefone",
+        "enterEmail": "Digite e-mail",
+        "dateOfBirth": "Data nascimento",
+        "enterDateOfBirth": "Digite data nascimento",
+        "registerCustomer": "Cadastrar cliente",
+        "invalidFormat": "Formato inválido",
+        "enterName": "Digite nome"
     }
 }

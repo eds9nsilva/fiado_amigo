@@ -71,4 +71,5 @@ export const $shadowProps: ViewStyle = {
   
 export type Theme = typeof theme;
 export type ThemeColors = keyof Theme['colors'];
+export type ThemeSpacing = keyof Theme['spacing'];
 
