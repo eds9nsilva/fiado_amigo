@@ -22,9 +22,9 @@ export interface ClientResponseApi {
 export interface Client {
     id: string,
     name: string,
-    email: string | null,
-    phone: string | null,
-    birthDate: string | null,
+    email?: string,
+    phone?: string,
+    birthDate?: string,
     status: enumStatus
 }
 
@@ -35,7 +35,7 @@ export interface createClientParams {
     date_nasc?: string,
     user_id: string
 }
-export interface shearchClientParams {
+export interface searchClientParams {
     name: string,
     user_id: string
 }

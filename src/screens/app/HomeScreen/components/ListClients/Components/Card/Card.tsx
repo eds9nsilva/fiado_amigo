@@ -3,9 +3,10 @@ import { ThemeColors } from "@theme";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { ModalOptions } from "../ModalOptions/ModalOptions";
-import { enumStatus } from "@domain";
+import { Client, enumStatus } from "@domain";
 import { useClientsStore } from "@store";
 import { ModalConfirmDelete } from "../ModalConfirmDelete/ModalConfirmDelete";
+import { useNavigation } from "@react-navigation/native";
 
 
 interface getStatus {
@@ -15,19 +16,18 @@ interface getStatus {
 }
 
 export interface cardProps {
-    status: enumStatus,
-    name: string,
-    id: string
+    client: Client
 }
 
-export function Card({ status, name, id }: cardProps) {
+export function Card({ client }: cardProps) {
     const useClients = useClientsStore();
+    const { navigate } = useNavigation();
 
     const [showModalOptions, setShowModalOptions] = useState<Boolean>();
     const [showModalConfirmDelete, setShowModalConfirmDelete] = useState<Boolean>();
 
     function getStatus(): getStatus {
-        switch (status) {
+        switch (client.status) {
             case enumStatus.late:
                 return {
                     title: 'Pendências atrasadas',
@@ -59,6 +59,11 @@ export function Card({ status, name, id }: cardProps) {
     async function deleClient() {
         setShowModalOptions(!showModalOptions)
         setShowModalConfirmDelete(true)
+    }
+
+    function editClient() {
+        setShowModalOptions(!showModalOptions);
+        navigate("EditClient", { client: client });
     }
 
     return (
@@ -96,13 +101,13 @@ export function Card({ status, name, id }: cardProps) {
                     alignItems="center"
                     justifyContent="space-between"
                 >
-                    <Text preset="headingSmall" bold>{name}</Text>
+                    <Text preset="headingSmall" bold>{client.name}</Text>
                     <Icon name={getStatus().icon} size={28} color={getStatus().color} />
                 </Box>
                 <Box height={1} backgroundColor="gray4" mt="s8" mb="s8" />
                 <Box flexDirection="row" justifyContent="space-between">
                     {
-                        status != enumStatus.paid ? (
+                        client.status != enumStatus.paid ? (
                             <Box flexDirection="row" alignItems="center">
                                 <Icon name="calendar" color="redError" />
                                 <Text
@@ -128,7 +133,7 @@ export function Card({ status, name, id }: cardProps) {
                     }
 
                     {
-                        status != enumStatus.paid ? (
+                        client.status != enumStatus.paid ? (
                             <TouchableOpacityBox
                                 flexDirection="row"
                                 borderRadius="s4"
@@ -169,6 +174,7 @@ export function Card({ status, name, id }: cardProps) {
                     <ModalOptions
                         onClose={() => setShowModalOptions(!showModalOptions)}
                         onPressDeleteClient={() => deleClient()}
+                        onPressEditClient={() => editClient()}
                         onPressViewDetails={() => { }}
                     />
                 )
@@ -177,10 +183,10 @@ export function Card({ status, name, id }: cardProps) {
                 showModalConfirmDelete && (
                     <ModalConfirmDelete
                         onCancel={() => setShowModalConfirmDelete(false)}
-                        onPressConfirmDeleteClient={() => { 
+                        onPressConfirmDeleteClient={() => {
                             setShowModalConfirmDelete(false)
-                            useClients.deleteClient(id) 
-                        }} 
+                            useClients.deleteClient(client.id)
+                        }}
                     />
                 )
             }

@@ -49,7 +49,7 @@ export function ListClients() {
     };
 
     const renderItems: ListRenderItem<Client> = ({ item }) => {
-        return <Card key={item.id} name={item.name} status={item.status} id={item.id} />
+        return <Card key={item.id} client={item} />
     };
 
 

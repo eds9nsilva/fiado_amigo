@@ -6,9 +6,10 @@ interface Props {
     onClose: () => void;
     onPressDeleteClient: () => void;
     onPressViewDetails: () => void;
+    onPressEditClient: () => void;
 }
 
-export function ModalOptions({ onClose, onPressDeleteClient, onPressViewDetails }: Props) {
+export function ModalOptions({ onClose, onPressDeleteClient, onPressViewDetails, onPressEditClient }: Props) {
     return (
         <Modal animationType="slide" transparent={true} visible={true}>
             <TouchableOpacityBox style={styles.overlay} onPress={onClose} />
@@ -27,7 +28,7 @@ export function ModalOptions({ onClose, onPressDeleteClient, onPressViewDetails 
                         <Text preset="paragraphMedium" color="greenPrimary">Ver detalhes</Text>
                     </TouchableOpacityBox>
                     <Box height={2} backgroundColor="gray5" mt="s4" mb="s4" />
-                    <TouchableOpacityBox>
+                    <TouchableOpacityBox onPress={onPressEditClient}>
                         <Text preset="paragraphMedium" color="greenPrimary">Editar</Text>
                     </TouchableOpacityBox>
                     <Box height={2} backgroundColor="gray5" mt="s4" mb="s4" />

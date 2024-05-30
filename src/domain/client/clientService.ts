@@ -63,16 +63,18 @@ async function deleteClient(id_client: string) {
   }
 }
 
-async function updateClient(params: Omit<Client, 'status'>) {
+async function updateClient(params: Omit<Client, 'status'>): Promise<boolean> {
   try {
     await clientApi.updateClient(params);
     toast?.show(t('customerUpdatedSuccessfully'), {
       type: 'success',
     });
+    return true;
   } catch {
     toast?.show(t('errorGeneric'), {
       type: 'danger',
     });
+    return false;
   }
 }
 
@@ -80,5 +82,6 @@ export const clientService = {
   listClients,
   createClient,
   searchClient,
-  deleteClient
+  deleteClient,
+  updateClient
 };
