@@ -2,7 +2,7 @@ import { clientAdapter } from './clientAdapter';
 import { t } from 'i18next';
 import { clientApi } from './clientsAPI';
 import { RegisterClientsSchema } from '../../screens/app/RegisterClients/signUpSchema';
-import { listClientsParams, shearchClientParams } from './clientsTypes';
+import { Client, listClientsParams, searchClientParams as searchClientParams } from './clientsTypes';
 
 async function listClients({ user_id }: listClientsParams) {
   try {
@@ -12,7 +12,7 @@ async function listClients({ user_id }: listClientsParams) {
     const response = await clientApi.listClient(params);
     return response.map(clientAdapter.toClient)
   } catch (error) {
-    toast?.show(t('erroGeneric'), {
+    toast?.show(t('errorGeneric'), {
       type: 'danger',
     });
   }
@@ -33,18 +33,18 @@ async function createClient(params: RegisterClientsSchema, user_id: string) {
     });
     return clientAdapter.toClient(response)
   } catch (error) {
-    toast?.show(t('erroGeneric'), {
+    toast?.show(t('errorGeneric'), {
       type: 'danger',
     });
   }
 }
 
-async function searchClient(params: shearchClientParams) {
+async function searchClient(params: searchClientParams) {
   try {
-    const response = await clientApi.shearchClient(params);
+    const response = await clientApi.searchClient(params);
     return response.map(clientAdapter.toClient)
   } catch (error) {
-    toast?.show(t('erroGeneric'), {
+    toast?.show(t('errorGeneric'), {
       type: 'danger',
     });
   }
@@ -57,7 +57,20 @@ async function deleteClient(id_client: string) {
       type: 'success',
     });
   } catch (error) {
-    toast?.show(t('erroGeneric'), {
+    toast?.show(t('errorGeneric'), {
+      type: 'danger',
+    });
+  }
+}
+
+async function updateClient(params: Omit<Client, 'status'>) {
+  try {
+    await clientApi.updateClient(params);
+    toast?.show(t('customerUpdatedSuccessfully'), {
+      type: 'success',
+    });
+  } catch {
+    toast?.show(t('errorGeneric'), {
       type: 'danger',
     });
   }

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { type ClientsStore } from './clientsTypes';
 import { mmkvStorage } from '@storage';
-import { Client, clientService, listClientsParams, shearchClientParams } from '@domain';
+import { Client, clientService, listClientsParams, searchClientParams } from '@domain';
 
 const initialClientsStore = {
     clients: [],
@@ -22,7 +22,7 @@ export const useClientsStore = create<ClientsStore>()(
                 set({ clients: clients })
                 set(() => ({ loading: false }))
             },
-            async searchClient(params: shearchClientParams) {
+            async searchClient(params: searchClientParams) {
                 set(() => ({ loading: true }))
                 const clients = await clientService.searchClient(params);
                 set({ clients: clients })

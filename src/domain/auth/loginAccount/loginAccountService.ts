@@ -2,7 +2,7 @@ import { ErrorApiResponse } from 'src/@types';
 import { authApi } from './createAccountAPI';
 import { authAdapter } from './loginAccountAdapter';
 import { ParamsLoginAccount } from './loginAccountType';
-import { IncorrectEmailOrpassword } from '@services';
+import { IncorrectEmailOrPassword } from '@services';
 import { t } from 'i18next';
 
 async function loginAccount(params: ParamsLoginAccount) {
@@ -14,13 +14,13 @@ async function loginAccount(params: ParamsLoginAccount) {
     const response = await authApi.loginAccount(loginAccountParams);
     return authAdapter.toAuth(response)
   } catch (error) {
-    const erroApi: ErrorApiResponse = error as ErrorApiResponse;
-    if (erroApi.response.data.message == IncorrectEmailOrpassword) {
-      toast?.show(t('incorrectEmailOrpassword'), {
+    const errorApi: ErrorApiResponse = error as ErrorApiResponse;
+    if (errorApi.response.data.message == IncorrectEmailOrPassword) {
+      toast?.show(t('incorrectEmailOrPassword'), {
         type: 'warning',
       });
     } else {
-      toast?.show(t('erroGeneric'), {
+      toast?.show(t('errorGeneric'), {
         type: 'danger',
       });
     }

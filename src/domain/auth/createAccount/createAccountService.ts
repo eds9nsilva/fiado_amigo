@@ -17,13 +17,13 @@ async function createAccount(params: ParamsCreateAccount) {
       user: userAdapter.toUser(response),
     };
   } catch (error) {
-    const erroApi: ErrorApiResponse = error as ErrorApiResponse;
-    if (erroApi.response.data.message == EmailAddressAlready) {
+    const errorApi: ErrorApiResponse = error as ErrorApiResponse;
+    if (errorApi.response.data.message == EmailAddressAlready) {
       toast?.show(t('emailAlreadyRegistered'), {
         type: 'warning',
       });
     } else {
-      toast?.show(t('erroGeneric'), {
+      toast?.show(t('errorGeneric'), {
         type: 'danger',
       });
     }
