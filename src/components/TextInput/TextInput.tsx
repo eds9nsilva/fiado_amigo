@@ -36,7 +36,7 @@ export function TextInput({
         borderColor: errorMessage ? 'error' : 'gray1',
         padding: 's16',
         borderRadius: 's8',
-        backgroundColor: 'secundaryBackground'
+        backgroundColor: 'secondaryBackground'
     };
 
     function focusInput() {

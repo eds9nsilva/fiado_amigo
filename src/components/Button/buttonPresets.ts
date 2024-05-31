@@ -48,7 +48,7 @@ export const buttonPresets: Record<
   secondary: {
     default: {
       container: {
-        backgroundColor: 'secundaryBackground',
+        backgroundColor: 'secondaryBackground',
       },
       content: 'primary',
     },
