@@ -32,6 +32,7 @@ module.exports = {
           '@context': './src/context',
           '@store': './src/store',
           '@storage': './src/storage',
+          '@utils': './src/utils',
         },
       },
     ],
