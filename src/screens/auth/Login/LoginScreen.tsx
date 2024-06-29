@@ -49,13 +49,17 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
                 label="E-mail"
                 placeholder={t('typeYourEmail')}
                 boxProps={{ mb: 's20' }}
+                returnKeyType="next"
             />
             <FormPasswordInput
+
                 control={control}
                 name="password"
                 label={t('password')}
                 placeholder={t('typeYourPassword')}
                 boxProps={{ mb: 's20' }}
+                returnKeyType="go"
+                onSubmitEditing={handleSubmit(submitLogin)}
             />
             <Box flexDirection="row" justifyContent="space-between">
                 <TouchableOpacityBox

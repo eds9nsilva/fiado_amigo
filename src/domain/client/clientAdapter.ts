@@ -16,19 +16,19 @@ function toClient(clientApi: ClientResponseApi): Client {
             case 'closeToWin':
                 return enumStatus.closeToWin
 
-            case 'noMoviment':
-                return enumStatus.noMoviment
+            case 'noMovement':
+                return enumStatus.noMovement
 
             default:
-                return enumStatus.noMoviment
+                return enumStatus.noMovement
         }
     }
     return {
         id: clientApi.id.toString(),
         name: clientApi.name.toString(),
-        email: clientApi.email?.toString() ?? null,
-        phone: clientApi.phone?.toString() ?? null,
-        birthDate: clientApi.date_nasc?.toString() ?? null,
+        email: clientApi.email?.toString(),
+        phone: clientApi.phone?.toString(),
+        birthDate: clientApi.date_nasc?.toString(),
         status: getStatus()
     }
 }

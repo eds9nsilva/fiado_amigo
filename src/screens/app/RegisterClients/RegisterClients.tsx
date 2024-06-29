@@ -70,6 +70,7 @@ export function RegisterClients() {
         autoCapitalize="words"
         label={t('phone')}
         type='phone'
+        keyboardType='phone-pad'
         placeholder={t('enterPhone')}
         boxProps={{ mb: 's20' }}
       />
@@ -77,6 +78,7 @@ export function RegisterClients() {
         control={control}
         name="email"
         label="E-mail"
+        keyboardType='email-address'
         placeholder={t('enterEmail')}
         boxProps={{ mb: 's20' }}
       />
@@ -86,6 +88,7 @@ export function RegisterClients() {
         type='birthDate'
         autoCapitalize="words"
         label={t('dateOfBirth')}
+        keyboardType='numeric'
         placeholder={t('enterDateOfBirth')}
         boxProps={{ mb: 's20' }}
       />

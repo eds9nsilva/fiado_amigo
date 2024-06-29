@@ -2,7 +2,16 @@ import { clientAdapter } from './clientAdapter';
 import { t } from 'i18next';
 import { clientApi } from './clientsAPI';
 import { RegisterClientsSchema } from '../../screens/app/RegisterClients/signUpSchema';
-import { Client, listClientsParams, searchClientParams as searchClientParams } from './clientsTypes';
+import {
+  Client,
+  createPendencyParams,
+  enumStatus,
+  listClientsParams,
+  pendency, searchClientParams as searchClientParams,
+  typesEnumStatus
+} from './clientsTypes';
+import { formatCurrencyToNumber } from "@utils";
+import reactotron from 'reactotron-react-native';
 
 async function listClients({ user_id }: listClientsParams) {
   try {
@@ -78,10 +87,36 @@ async function updateClient(params: Omit<Client, 'status'>): Promise<boolean> {
   }
 }
 
+async function setPendency(params: Omit<pendency, 'status' | 'id'>) {
+  reactotron.log('teste ', formatCurrencyToNumber(params.value))
+
+  try {
+    let body: createPendencyParams;
+    body = {
+      client_id: params.client_id,
+      amount: 11,
+      description_products: params?.description,
+      status: typesEnumStatus.noMovement
+    }
+    reactotron.log('body', body)
+    await clientApi.setPendency(body);
+
+    toast?.show(t('pendencyRegisteredSuccessfully'), {
+      type: 'success',
+    });
+  } catch (error) {
+    reactotron.log(error)
+    toast?.show(t('errorGeneric'), {
+      type: 'danger',
+    });
+  }
+
+}
 export const clientService = {
   listClients,
   createClient,
   searchClient,
   deleteClient,
-  updateClient
+  updateClient,
+  setPendency
 };

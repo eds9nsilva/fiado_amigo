@@ -1,6 +1,14 @@
 import { api } from "@services";
-import { Client, ClientResponseApi, createClientParams, deleteClientProps, listClientsParams, searchClientParams as searchClientParams } from "./clientsTypes";
+import {
+    Client,
+    ClientResponseApi,
+    createClientParams,
+    createPendencyParams,
+    listClientsParams,
+    searchClientParams as searchClientParams
+} from "./clientsTypes";
 import reactotron from "reactotron-react-native";
+
 
 
 async function listClient(params: listClientsParams): Promise<ClientResponseApi[] | []> {
@@ -33,10 +41,17 @@ async function updateClient(params: Omit<Client, 'status'>) {
     return response.data;
 }
 
+async function setPendency(params: createPendencyParams) {
+    reactotron.log(params);
+    const response = await api.post(`/shopping`, params);
+    return response.data;
+}
+
 export const clientApi = {
     listClient,
     createClient,
     searchClient: searchClient,
     deleteClient,
-    updateClient
+    updateClient,
+    setPendency
 };

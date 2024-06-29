@@ -44,10 +44,10 @@ export function Card({ client }: cardProps) {
             case enumStatus.closeToWin:
                 return {
                     title: 'Pendências perto de vencer',
-                    color: 'yelloWarning',
+                    color: 'yellowWarning',
                     icon: "minusSquare"
                 }
-            case enumStatus.noMoviment:
+            case enumStatus.noMovement:
                 return {
                     title: 'Pendências pagas',
                     color: 'greenPrimary',

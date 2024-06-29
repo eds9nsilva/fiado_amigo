@@ -1,4 +1,4 @@
-import { Client, listClientsParams, searchClientParams } from "@domain";
+import { Client, listClientsParams, searchClientParams, pendency } from "@domain";
 
 export type ClientsStore = {
     clients: Client[] | undefined;
@@ -6,5 +6,6 @@ export type ClientsStore = {
     getClients: ({ user_id }: listClientsParams) => void;
     searchClient: (params: searchClientParams) => void;
     deleteClient: (id: string) => void;
+    setPendency: (pendency: Omit<pendency, 'id' | 'status'>) => void;
     loading: boolean
 };

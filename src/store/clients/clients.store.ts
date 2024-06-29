@@ -33,7 +33,16 @@ export const useClientsStore = create<ClientsStore>()(
                     await clientService.deleteClient(id)
                     const newListClients = (useClientsStore.getState().clients || []).filter(item => item?.id !== id)
                     set({ clients: newListClients })
-                } catch (error) {}
+                } catch (error) { }
+            },
+            async setPendency(pendency) {
+                try {
+                    set(() => ({ loading: true }))
+                    await clientService.setPendency(pendency)
+                    set(() => ({ loading: false }))
+                } catch (error) {
+                    set(() => ({ loading: false }))
+                }
             }
         }),
         {

@@ -16,7 +16,7 @@ export interface TextInputProps extends RNTextInputProps {
     errorMessage?: string;
     RightComponent?: React.ReactElement;
     boxProps?: BoxProps;
-    type?: 'phone' | 'normal' | 'birthDate'
+    type?: 'phone' | 'normal' | 'birthDate' | 'money';
 }
 
 export function TextInput({
@@ -36,11 +36,24 @@ export function TextInput({
         borderColor: errorMessage ? 'error' : 'gray1',
         padding: 's16',
         borderRadius: 's8',
-        backgroundColor: 'secondaryBackground'
+        backgroundColor: 'secondaryBackground',
     };
 
     function focusInput() {
         inputRef.current?.focus();
+    }
+
+    function getTypedInput() {
+        switch (type) {
+            case 'phone':
+                return Masks.BRL_PHONE;
+            case 'birthDate':
+                return Masks.DATE_DDMMYYYY;
+            case 'money':
+                return Masks.BRL_CURRENCY;
+            default:
+                break;
+        }
     }
 
     return (
@@ -63,9 +76,10 @@ export function TextInput({
                                 style={$textInputStyle}
                                 placeholderTextColor={colors.gray2}
                                 {...rnTextInputProps}
-                            />) : (
+                            />
+                        ) : (
                             <MaskInput
-                                mask={type == 'phone' ? Masks.BRL_PHONE : Masks.DATE_DDMMYYYY}
+                                mask={getTypedInput()}
                                 autoCapitalize="none"
                                 ref={inputRef}
                                 style={$textInputStyle}

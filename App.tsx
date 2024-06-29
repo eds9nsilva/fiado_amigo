@@ -10,7 +10,9 @@ import { asyncStorage } from "./src/storage/asyncStorage";
 import Toast from 'react-native-toast-notifications'
 import { Platform } from "react-native";
 import { ToastType } from "src/@types";
-
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 inicializeStorage(asyncStorage)
 
 function App(): JSX.Element {
