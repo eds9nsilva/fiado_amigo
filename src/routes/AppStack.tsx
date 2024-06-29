@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {SettingsScreen, RegisterClients, EditClient, } from '@screens';
+import {SettingsScreen, RegisterClients, EditClient, RegisterPendency, } from '@screens';
 
 import {AppTabBottomTabParamList, AppTabNavigator} from './AppTabNavigator';
 import { Client } from '@domain';
@@ -13,6 +13,7 @@ export type AppStackParamList = {
   SettingsScreen: undefined;
   RegisterClients: undefined;
   EditClient: { client: Client };
+  RegisterPendency: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -29,6 +30,7 @@ export function AppStack() {
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
       <Stack.Screen name="RegisterClients" component={RegisterClients} />
       <Stack.Screen name="EditClient" component={EditClient} />
+      <Stack.Screen name="RegisterPendency" component={RegisterPendency} />
     </Stack.Navigator>
   );
 }

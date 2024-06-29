@@ -5,8 +5,8 @@ export * from './auth/ForgotPasswordScreen/ForgotPasswordScreen';
 
 export * from './app/HomeScreen/HomeScreen';
 export * from './app/SettingsScreen/SettingsScreen';
-export * from './app/FavoriteScreen/FavoriteScreen';
 export * from './app/MyProfileScreen/MyProfileScreen';
 export * from './app//NewPostScreen/NewPostScreen';
 export * from './app/RegisterClients/RegisterClients';
 export * from './app/EditClient/EditClient';
+export * from './app/RegisterPendency/RegisterPendency';

@@ -6,12 +6,12 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import './src/translate/index';
 import { inicializeStorage } from "./src/storage/storageService";
-import { mmkvStorage } from "./src/storage/mmkvStorage";
+import { asyncStorage } from "./src/storage/asyncStorage";
 import Toast from 'react-native-toast-notifications'
 import { Platform } from "react-native";
 import { ToastType } from "src/@types";
 
-inicializeStorage(mmkvStorage)
+inicializeStorage(asyncStorage)
 
 function App(): JSX.Element {
   return (
