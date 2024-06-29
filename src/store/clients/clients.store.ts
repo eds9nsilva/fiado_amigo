@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { type ClientsStore } from './clientsTypes';
-import { mmkvStorage } from '@storage';
+import { storageService } from '@storage';
 import { Client, clientService, listClientsParams, searchClientParams } from '@domain';
 
 const initialClientsStore = {
@@ -31,14 +31,14 @@ export const useClientsStore = create<ClientsStore>()(
             async deleteClient(id: string) {
                 try {
                     await clientService.deleteClient(id)
-                    const newlistClients = (useClientsStore.getState().clients || []).filter(item => item?.id !== id)
-                    set({ clients: newlistClients })
+                    const newListClients = (useClientsStore.getState().clients || []).filter(item => item?.id !== id)
+                    set({ clients: newListClients })
                 } catch (error) {}
             }
         }),
         {
             name: KEY_STORAGE,
-            storage: createJSONStorage(() => mmkvStorage),
+            storage: createJSONStorage(() => storageService),
         },
     ),
 );

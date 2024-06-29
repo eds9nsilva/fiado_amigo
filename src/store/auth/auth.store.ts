@@ -6,7 +6,7 @@ import {
   loginAccountService,
   createAccountService
 } from '@domain';
-import { mmkvStorage } from '@storage';
+import { storageService } from '@storage';
 import { api } from '@services';
 
 const initialUserStore = {
@@ -39,11 +39,17 @@ export const useAuthStore = create<UserStore>()(
 
       signUp: async (params) => {
         set(() => ({ loading: true }))
-        const response = await createAccountService.createAccount(params);
-        set(() => ({ loading: false }))
-        return response?.user;
+        try {
+          const response = await createAccountService.createAccount(params);
+          return response?.user;
+
+        } catch (error) {
+          throw error;
+        } finally {
+          set(() => ({ loading: false }))
+        }
       },
-    logout: (rememberMe) => {
+      logout: (rememberMe) => {
         if (rememberMe) {
           set(() => ({ token: undefined }))
         } else {
@@ -54,7 +60,7 @@ export const useAuthStore = create<UserStore>()(
     }),
     {
       name: KEY_STORAGE,
-      storage: createJSONStorage(() => mmkvStorage),
+      storage: createJSONStorage(() => storageService),
       partialize: (state) => ({
         token: state.token,
         user: state.user,
