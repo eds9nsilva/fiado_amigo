@@ -64,7 +64,7 @@ export function Banner() {
                 {CardsBanner({
                     children: <Icon name="dollarSquare" size={26} color="greenPrimary" />,
                     text: 'Pendências',
-                    onPress: () => { }
+                    onPress: () => { navigate("RegisterPendency") }
                 })}
                 {CardsBanner({
                     children: <Icon name="statusUp" size={26} color="greenPrimary" />,
