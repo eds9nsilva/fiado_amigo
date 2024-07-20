@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, BoxProps, Button, FormTextInput, Screen, Text, TouchableOpacityBox } from "@components";
 import { RegisterPendencySchema, registerPendencySchema } from "./signUpSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,7 +7,7 @@ import { t } from "i18next";
 import { useClientsStore, useAuthStore } from "@store";
 import { ModalSelectClient } from "./components/modalSelectClient/modalSelectClient";
 import { Client } from "@domain";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const defaultValues: RegisterPendencySchema = {
     client_id: '',
@@ -16,9 +16,16 @@ const defaultValues: RegisterPendencySchema = {
     due_date: ''
 };
 
+type routeParams = {
+    client?: Client
+}
+
 export function RegisterPendency() {
     const { setPendency, loading } = useClientsStore();
     const { goBack } = useNavigation();
+    const routes = useRoute();
+
+    const { client } = routes.params as routeParams;
 
     const [showModalSelectClient, setShowModalSelectClient] = useState<Boolean>(false);
     const [selectClient, setSelectClient] = useState<Client | null>(null);
@@ -28,6 +35,13 @@ export function RegisterPendency() {
         defaultValues,
         mode: 'onChange',
     });
+
+    useEffect(() => {
+        if (client) {
+            setSelectClient(client);
+            setValue('client_id', client.id);
+        }
+    }, []);
 
     function updateShowSelect() {
         setShowModalSelectClient(!showModalSelectClient)

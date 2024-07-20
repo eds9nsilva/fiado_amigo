@@ -13,7 +13,7 @@ export type AppStackParamList = {
   SettingsScreen: undefined;
   RegisterClients: undefined;
   EditClient: { client: Client };
-  RegisterPendency: undefined;
+  RegisterPendency: { client?: Client };
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();

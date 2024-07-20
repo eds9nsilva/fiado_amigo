@@ -7,6 +7,7 @@ import { Client, enumStatus } from "@domain";
 import { useClientsStore } from "@store";
 import { ModalConfirmDelete } from "../ModalConfirmDelete/ModalConfirmDelete";
 import { useNavigation } from "@react-navigation/native";
+import { t } from "i18next";
 
 
 interface getStatus {
@@ -49,7 +50,7 @@ export function Card({ client }: cardProps) {
                 }
             case enumStatus.noMovement:
                 return {
-                    title: 'Pendências pagas',
+                    title: 'Nenhuma pendência cadastrada',
                     color: 'greenPrimary',
                     icon: "tickSquare"
                 }
@@ -68,9 +69,10 @@ export function Card({ client }: cardProps) {
 
     return (
         <Box
-            style={styles.shadowProp}
             backgroundColor="background"
             borderRadius="s8"
+            borderColor={getStatus().color}
+            borderWidth={1}
             mt="s10"
         >
             <Box
@@ -107,7 +109,7 @@ export function Card({ client }: cardProps) {
                 <Box height={1} backgroundColor="gray4" mt="s8" mb="s8" />
                 <Box flexDirection="row" justifyContent="space-between">
                     {
-                        client.status != enumStatus.paid ? (
+                        client.status != enumStatus.noMovement ?? (
                             <Box flexDirection="row" alignItems="center">
                                 <Icon name="calendar" color="redError" />
                                 <Text
@@ -118,41 +120,33 @@ export function Card({ client }: cardProps) {
                                     Vencimento: 10/11/2024
                                 </Text>
                             </Box>
-                        ) : (
-                            <Box flexDirection="row" alignItems="center">
-                                <Icon name="calendar" color="greenPrimary" />
-                                <Text
-                                    preset="paragraphSmall"
-                                    ml="s4"
-                                    color="greenPrimary"
-                                >
-                                    Pagamento: 10/11/2024
-                                </Text>
-                            </Box>
                         )
                     }
 
                     {
-                        client.status != enumStatus.paid ? (
-                            <TouchableOpacityBox
-                                flexDirection="row"
-                                borderRadius="s4"
-                                alignItems="center"
-                                paddingLeft="s8"
-                                paddingRight="s8"
-                                height={24}
-                                borderWidth={1}
-                                borderColor="buttonPrimary"
-                            >
-                                <Icon name="dollarSquare" color="buttonPrimary" size={14} />
-                                <Text
-                                    preset="paragraphSmall"
-                                    ml="s4"
-                                    color="buttonPrimary"
+                        client.status == enumStatus.noMovement ? (
+                            <Box alignItems="flex-end" flex={1}>
+                                <TouchableOpacityBox
+                                    flexDirection="row"
+                                    borderRadius="s4"
+                                    alignItems="center"
+                                    paddingLeft="s8"
+                                    paddingRight="s8"
+                                    height={24}
+                                    borderWidth={1}
+                                    borderColor="buttonPrimary"
+                                    onPress={() => navigate("RegisterPendency", { client: client })}
                                 >
-                                    Pagar
-                                </Text>
-                            </TouchableOpacityBox>
+                                    <Icon name="dollarSquare" color="buttonPrimary" size={14} />
+                                    <Text
+                                        preset="paragraphSmall"
+                                        ml="s4"
+                                        color="buttonPrimary"
+                                    >
+                                        {t('registerPendency')}
+                                    </Text>
+                                </TouchableOpacityBox>
+                            </Box>
                         ) : (
                             <Box flexDirection="row" alignItems="center">
                                 <Icon name="cup" color="greenPrimary" size={20} />
@@ -196,14 +190,8 @@ export function Card({ client }: cardProps) {
 }
 
 const styles = StyleSheet.create({
-    shadowProp: {
-        shadowColor: '#171717',
-        shadowOffset: { width: -0, height: 1 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-    },
     radius: {
-        borderTopLeftRadius: 8,
-        borderTopRightRadius: 8
+        borderTopLeftRadius: 4,
+        borderTopRightRadius: 4
     }
 })
