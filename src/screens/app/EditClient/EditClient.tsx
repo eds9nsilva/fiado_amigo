@@ -101,6 +101,7 @@ export function EditClient() {
         control={control}
         name="email"
         label="E-mail"
+        keyboardType='email-address'
         placeholder={t('enterEmail')}
         boxProps={{ mb: 's20' }}
       />
@@ -108,7 +109,7 @@ export function EditClient() {
         control={control}
         name="birthDate"
         type='birthDate'
-        autoCapitalize="words"
+        keyboardType='number-pad'
         label={t('dateOfBirth')}
         placeholder={t('enterDateOfBirth')}
         boxProps={{ mb: 's20' }}

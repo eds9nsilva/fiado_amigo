@@ -37,6 +37,16 @@
         "dateOfBirth": "Date Of Birth",
         "enterDateOfBirth": "Enter date of birth",
         "registerCustomer": "Register customer",
-        "invalidFormat": "Invalid format"
+        "invalidFormat": "Invalid format",
+        "customerUpdatedSuccessfully": "Customer edited successfully!",
+        "registerPendency": "Register Debt",
+        "enterDescriptionPendency": "Enter the description of the debt",
+        "enterValuePendency": "Enter the value of the debt",
+        "description": "Description",
+        "value": "Value",
+        "client": "Client",
+        "pendencyRegisteredSuccessfully": "Debt registered successfully!",
+        "due-date": "Due date",
+        "enterDueDate": "Enter the due date"
     }
 }

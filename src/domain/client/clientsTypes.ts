@@ -52,14 +52,16 @@ export interface pendency {
     id: string,
     client_id: string,
     value: string,
-    description?: string
+    due_date?: string,
+    description?: string,
     status: enumStatus
 }
 
 export interface createPendencyParams {
     client_id: string,
     amount: number,
-    description_products?: string
+    due_date?: string | null,
+    description_products?: string | null,
     status: typesEnumStatus
 }
 export interface createClientParams {

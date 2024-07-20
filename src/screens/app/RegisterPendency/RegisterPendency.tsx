@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, BoxProps, Button, FormTextInput, Screen, Text, TouchableOpacityBox } from "@components";
 import { RegisterPendencySchema, registerPendencySchema } from "./signUpSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { t, use } from "i18next";
+import { t } from "i18next";
 import { useClientsStore, useAuthStore } from "@store";
 import { ModalSelectClient } from "./components/modalSelectClient/modalSelectClient";
-import reactotron from "reactotron-react-native";
 import { Client } from "@domain";
+import { useNavigation } from "@react-navigation/native";
 
 const defaultValues: RegisterPendencySchema = {
     client_id: '',
     value: '',
     description: '',
+    due_date: ''
 };
 
 export function RegisterPendency() {
-    const { setPendency } = useClientsStore();
-    const { user } = useAuthStore();
+    const { setPendency, loading } = useClientsStore();
+    const { goBack } = useNavigation();
 
     const [showModalSelectClient, setShowModalSelectClient] = useState<Boolean>(false);
     const [selectClient, setSelectClient] = useState<Client | null>(null);
 
-    const { control, formState, handleSubmit, setValue,  } = useForm<RegisterPendencySchema>({
+    const { control, formState, handleSubmit, setValue, } = useForm<RegisterPendencySchema>({
         resolver: zodResolver(registerPendencySchema),
         defaultValues,
         mode: 'onChange',
@@ -34,35 +35,34 @@ export function RegisterPendency() {
 
     function updateSelectClient(client: Client) {
         setSelectClient(client);
-        setValue('client_id', client.id,  { shouldValidate: true });
+        setValue('client_id', client.id);
 
         updateShowSelect();
     }
 
     function onSubmit(data: RegisterPendencySchema) {
-        reactotron.log(data);
         setPendency(data);
-        
+        goBack();
     }
 
     function disabledButton() {
-        const { client_id, value } = control._formValues;
-        if (value && client_id) {
+        const { value } = formState.dirtyFields;
+        if (value && selectClient) {
             return false;
         }
         return true;
     }
- 
+
     return (
         <Screen canGoBack>
             <Box alignItems='center' mb='s20'>
                 <Text preset="headingMedium">
-                    Registrar Dívida
+                    {t('registerPendency')}
                 </Text>
             </Box>
             <TouchableOpacityBox onPress={updateShowSelect}>
                 <Text mb="s4" preset="paragraphMedium">
-                    {'* Cliente'}
+                    {'*' + t('client')}
                 </Text>
                 <Box {...$textInputContainer}>
                     <Text color={selectClient ? "backgroundContrast" : "gray2"} preset="paragraphMedium">
@@ -72,24 +72,36 @@ export function RegisterPendency() {
                 <FormTextInput
                     control={control}
                     name="value"
-                    label="* Valor"
+                    label={'*' + t('value')}
                     keyboardType='numeric'
-                    placeholder={'Digite o valor da dívida'}
+                    placeholder={t('enterValuePendency')}
                     boxProps={{ mb: 's20' }}
                     type="money"
                 />
                 <FormTextInput
                     control={control}
+                    name="due_date"
+                    type='birthDate'
+                    autoCapitalize="words"
+                    label={t('due-date')}
+                    keyboardType='numeric'
+                    placeholder={t('enterDueDate')}
+                    boxProps={{ mb: 's20' }}
+                />
+                <FormTextInput
+                    control={control}
                     name="description"
-                    label="Descrição"
+                    label={t('description')}
                     keyboardType='default'
-                    placeholder={'Digite a descrição da dívida'}
+                    placeholder={t('enterDescriptionPendency')}
                     boxProps={{ mb: 's20' }}
                     multiline={true}
                 />
                 <Button
                     onPress={handleSubmit(onSubmit)}
-                    title={'Cadastrar Dívida'}
+                    title={t('registerPendency')}
+                    disabled={disabledButton()}
+                    loading={loading}
                 />
             </TouchableOpacityBox>
             {

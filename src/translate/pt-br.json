@@ -37,6 +37,16 @@
         "enterDateOfBirth": "Digite data nascimento",
         "registerCustomer": "Cadastrar cliente",
         "invalidFormat": "Formato inválido",
-        "enterName": "Digite nome"
+        "enterName": "Digite nome",
+        "customerUpdatedSuccessfully": "Cliente editado com sucesso!",
+        "registerPendency": "Cadastrar Dívida",
+        "enterDescriptionPendency": "Digite a descrição da dívida",
+        "enterValuePendency": "Digite o valor da dívida",
+        "description": "Descrição",
+        "value": "Valor",
+        "client": "Cliente",
+        "pendencyRegisteredSuccessfully": "Dívida cadastrada com sucesso!",
+        "due-date": "Data de vencimento",
+        "enterDueDate": "Digite a data de vencimento"
     }
 }

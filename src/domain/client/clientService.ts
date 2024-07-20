@@ -88,24 +88,21 @@ async function updateClient(params: Omit<Client, 'status'>): Promise<boolean> {
 }
 
 async function setPendency(params: Omit<pendency, 'status' | 'id'>) {
-  reactotron.log('teste ', formatCurrencyToNumber(params.value))
 
   try {
     let body: createPendencyParams;
     body = {
       client_id: params.client_id,
-      amount: 11,
       description_products: params?.description,
+      amount: formatCurrencyToNumber(params.value),
+      due_date: params?.due_date,
       status: typesEnumStatus.noMovement
     }
-    reactotron.log('body', body)
     await clientApi.setPendency(body);
-
     toast?.show(t('pendencyRegisteredSuccessfully'), {
       type: 'success',
     });
   } catch (error) {
-    reactotron.log(error)
     toast?.show(t('errorGeneric'), {
       type: 'danger',
     });
